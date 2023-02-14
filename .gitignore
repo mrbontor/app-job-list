@@ -1,0 +1,8 @@
+**/node_modules
+**/coverage
+**.git/
+.env
+
+**/dbs/mongo_data
+**/dbs/redis_data
+**/backend/var/log

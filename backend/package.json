@@ -1,0 +1,38 @@
+{
+  "name": "app-job-list-backend",
+  "version": "1.0.0",
+  "description": "backend api",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest -- test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mrbontor/app-job-list.git"
+  },
+  "author": "Tobok Sitanggang <mrbontor@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrbontor/app-job-list/issues"
+  },
+  "homepage": "https://github.com/mrbontor/app-job-list#readme",
+  "dependencies": {
+    "ajv": "^8.12.0",
+    "ajv-errors": "^3.0.0",
+    "ajv-formats": "^2.1.1",
+    "ajv-keywords": "^5.1.0",
+    "axios": "^1.3.3",
+    "cookie-parser": "^1.4.6",
+    "dayjs": "^1.11.7",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "gen-secure-password": "^1.0.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongodb": "^5.0.1",
+    "mongodb-pagination": "^1.0.2",
+    "redis": "^4.6.4",
+    "string-math": "^1.2.2",
+    "uuid": "^9.0.0",
+    "winston": "^3.8.2"
+  }
+}

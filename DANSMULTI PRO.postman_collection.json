@@ -1,0 +1,4089 @@
+{
+	"info": {
+		"_postman_id": "7dddbb90-1d02-4321-872e-d8afea969574",
+		"name": "DANSMULTI PRO",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16017716"
+	},
+	"item": [
+		{
+			"name": "AUTH",
+			"item": [
+				{
+					"name": "LOGIN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonBody = JSON.parse(responseBody);",
+									"if(typeof jsonBody.data !== 'undefined') {",
+									"    postman.setEnvironmentVariable(\"token\", jsonBody.data.accessToken);",
+									"    postman.setEnvironmentVariable(\"refresh_token\",  pm.cookies.get('RTOKEN'));",
+									"    postman.setEnvironmentVariable(\"deviceId\", pm.cookies.get('DID'));",
+									"    console.log(pm.cookies.get('RTOKEN'))",
+									"} else {",
+									"    postman.setEnvironmentVariable(\"token\", null);",
+									"    postman.setEnvironmentVariable(\"refresh_token\",  null);",
+									"}",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"emailAddress\": \"superadmin@gmail.com\",\n    \"password\": \"Superadmin123!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/v1/auth/login",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"login"
+							]
+						},
+						"description": "User login using method POST with paramaters`username` and `password.`"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"emailAddress\": \"superadmin@gmail.com\",\n    \"password\": \"Superadmin123!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/auth/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "RTOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiZXlKcGRpSTZJa1JJYmpsemJrWXpPVGhhUm05S2FrVWlMQ0psYm1OeWVYQjBaV1JFWVhSaElqb2lUVkZsZEhZNVpYSlJWVWxTY1VKM1FYcHRUM2hVT1U1dGJqWjNXRVpYTjJJcldDc3dUMkl2UVdabE5FbExNak01ZEdwaVRWTkRSR1ZYVDJWVlN6Y3dZVTB2WmpFMmNVWlpOa05RUVZJMmRYUm9ZbVI2ZG5oTFJtRjZPU3RtYURsUlRsQjBVeUlzSW1GMWRHZ2lPaUp1YkdNMGNFMVpRbVEyV1U1dFpHOVNRWGhwUkZwM1BUMGlmUT09IiwiaWF0IjoxNjc2MzE3ODQ3LCJleHAiOjE2NzY0MDQyNDcsImF1ZCI6ImdpdGJ1Yi5jb20vbXJib250b3IiLCJpc3MiOiJnaXRidWIuY29tL21yYm9udG9yIn0.A5TU1OvIVdaXbOeyLdwxNyNsbVWo1k337U8x3qhEYpM; Max-Age=86400; Path=/; Expires=Tue, 14 Feb 2023 19:50:47 GMT; HttpOnly; SameSite=None"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "DID=3f39464d-f654-4ec4-b7cc-4151f0bc9d3e; Max-Age=31536000; Path=/; Expires=Tue, 13 Feb 2024 19:50:47 GMT; HttpOnly; SameSite=None"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "358"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"166-J9Qq0/6za+CyQQF/rF9SxAtOMEk\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 19:50:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJOYW1lIjoic3VwZXJhZG1pbiIsImVtYWlsQWRkcmVzcyI6InN1cGVyYWRtaW5AZ21haWwuY29tIn0sImlhdCI6MTY3NjMxNzg0NywiZXhwIjoxNjc2MzUzODUwLCJhdWQiOiJnaXRidWIuY29tL21yYm9udG9yIiwiaXNzIjoiZ2l0YnViLmNvbS9tcmJvbnRvciJ9._YH23frdqyVqenHCU0y5uOs-1y2hMKeWfa4RxRsAVTU\"\n    }\n}"
+						},
+						{
+							"name": "Un Authorized / wrong credential",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"emailAddress\": \"superadmin@gmail.com\",\n    \"password\": \"Superadmin123!!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/auth/login",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-g2WopRmqbbccMxirf2NWM31YggU\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 19:51:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Un Authorized!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "SIGNUP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"user\",\n    \"lastName\": \"baru\",\n    \"gender\": \"Man\",\n    \"userName\": \"user1\",\n    \"emailAddress\": \"user1@gmail.com\",\n    \"password\": \"User123!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/v1/auth/register",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"register"
+							]
+						},
+						"description": "Register user use `JSON` payload to create a user"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"Super\",\n    \"lastName\": \"Admin\",\n    \"gender\": \"Man\",\n    \"userName\": \"superadmin\",\n    \"emailAddress\": \"superadmin@gmail.com\",\n    \"password\": \"SuperAdmin123!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/auth/register",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "69"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"45-dvp2xLeQ7/Vb5eMFuzfcczKfWBU\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 18:56:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": \"63ea87cef26e1fd489b65dfe\"\n}"
+						},
+						{
+							"name": "Err Username exist",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"Super\",\n    \"lastName\": \"Admin\",\n    \"gender\": \"Man\",\n    \"userName\": \"superadmin\",\n    \"emailAddress\": \"superadmin@gmail.com\",\n    \"password\": \"SuperAdmin123!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/auth/register",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "62"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3e-t8vNDnM/fR/QHlNwpQIu/RPb2C4\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 19:05:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"The userName has been registered!\"\n}"
+						},
+						{
+							"name": "Err Email exist",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"Super\",\n    \"lastName\": \"Admin\",\n    \"gender\": \"Man\",\n    \"userName\": \"superadmin1\",\n    \"emailAddress\": \"superadmin@gmail.com\",\n    \"password\": \"SuperAdmin123!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/auth/register",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "66"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"42-D3NpzOgvtlRnyg6t1O553M6dw5Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 19:06:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"The emailAddress has been registered!\"\n}"
+						},
+						{
+							"name": "Err Valiation missing field",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"Super\",\n    \"lastName\": \"Admin\",\n    \"userName\": \"superadmin\",\n    \"emailAddress\": \"superadmin@gmail.com\",\n    \"password\": \"SuperAdmin123!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/auth/register",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "125"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7d-4LhsSmmciEgOTZXh8HTQ0uJaOlo\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 19:07:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Validation Error!\",\n    \"errors\": [\n        {\n            \"param\": \"gender\",\n            \"key\": \"required\",\n            \"message\": \"Gender is required!\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Err Validation additional field",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"Super\",\n    \"lastName\": \"Admin\",\n    \"gender\": \"Man\",\n    \"userName\": \"superadmin\",\n    \"emailAddress\": \"superadmin@gmail.com\",\n    \"password\": \"SuperAdmin123!\",\n    \"xxx\": \"xxx\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/auth/register",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "150"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"96-59Bp5zKJI6c7pqrK77QhwsgPMTs\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 19:07:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Validation Error!\",\n    \"errors\": [\n        {\n            \"param\": \"xxx\",\n            \"key\": \"additionalProperties\",\n            \"message\": \"must NOT have additional properties\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Err UnAuthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"Super\",\n    \"lastName\": \"Admin\",\n    \"gender\": \"Man\",\n    \"userName\": \"superadmin\",\n    \"emailAddress\": \"superadmin@gmail.com\",\n    \"password\": \"SuperAdmin123!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/auth/register",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-Z5B6VWblRXnXpFIt27nH3EQsmvE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 19:19:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Token invalid\"\n}"
+						}
+					]
+				},
+				{
+					"name": "REFRESH",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonBody = JSON.parse(responseBody);",
+									"if(typeof jsonBody.data !== 'undefined') {",
+									"    ",
+									"    postman.setEnvironmentVariable(\"token\", jsonBody.data.accessToken);",
+									"    postman.setEnvironmentVariable(\"refresh_token\",  pm.cookies.get('RTOKEN'));",
+									"    postman.setEnvironmentVariable(\"deviceId\", pm.cookies.get('DID'));",
+									"} ",
+									"else {",
+									"    // postman.setEnvironmentVariable(\"token\", null);",
+									"    // postman.setEnvironmentVariable(\"refresh_token\",  null);",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/v1/auth/refresh-token",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"refresh-token"
+							]
+						},
+						"description": "Fetch new Token as a refresh token"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/auth/refresh-token",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"refresh-token"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "RTOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiZXlKcGRpSTZJbEJFUTFCdGFWZDZhalo0VFRKT1Eyb2lMQ0psYm1OeWVYQjBaV1JFWVhSaElqb2lNelJQUWxvelUyVkRUR1ZGSzIxSE1URnRVRUYwZVUxNGRUazRNelpoV0ZCQ2EwWmpNa3cxTjJ4clRtZHBURmhQY1ZOWVkyUXhibXRUZWpoUE5qTkhOMVZ3ZFdReU5sUlhLekJEWVdsUlpIbEJRVU41VVZGbVdHZzFhMDF1VFc0NVpqUTJZaUlzSW1GMWRHZ2lPaUpNV0U0NVJGbDNiVU5VYTB4eU5GQXliU3Q2ZG5kblBUMGlmUT09IiwiaWF0IjoxNjc2MzE5MDUyLCJleHAiOjE2NzY0MDU0NTIsImF1ZCI6ImdpdGJ1Yi5jb20vbXJib250b3IiLCJpc3MiOiJnaXRidWIuY29tL21yYm9udG9yIn0.xse4PIbRhX2pXUksxLawMYsAMsdxjCj4tLWm8Fq9qGM; Max-Age=86400; Path=/; Expires=Tue, 14 Feb 2023 20:10:52 GMT; HttpOnly; SameSite=None"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "DID=34c193b0-6d6e-45d3-9a8e-553c84fc8e83; Max-Age=31536000; Path=/; Expires=Tue, 13 Feb 2024 20:10:52 GMT; HttpOnly; SameSite=None"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "358"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"166-dQybWkRXJayWjbAaz7El9FV4QOs\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 20:10:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJOYW1lIjoic3VwZXJhZG1pbiIsImVtYWlsQWRkcmVzcyI6InN1cGVyYWRtaW5AZ21haWwuY29tIn0sImlhdCI6MTY3NjMxOTA1MiwiZXhwIjoxNjc2MzU1MDU1LCJhdWQiOiJnaXRidWIuY29tL21yYm9udG9yIiwiaXNzIjoiZ2l0YnViLmNvbS9tcmJvbnRvciJ9.xLYDBHw7wpYYSWYy5Nnyhp6Wxk0LD9YnNmfdnnlmY0A\"\n    }\n}"
+						},
+						{
+							"name": "err UnAuthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/auth/refresh-token",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"refresh-token"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "RTOKEN=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; Secure; SameSite=None"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-AQps8voplm/ABatefmH34cCownU\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 20:11:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Token Invalid\"\n}"
+						}
+					]
+				},
+				{
+					"name": "LOGOUT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"postman.setEnvironmentVariable(\"token\", null);",
+									"postman.setEnvironmentVariable(\"refresh_token\", null);",
+									"pm.cookies.clear()"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/v1/auth/logout",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"logout"
+							],
+							"query": [
+								{
+									"key": "allDevices",
+									"value": "true",
+									"description": "true or false",
+									"disabled": true
+								}
+							]
+						},
+						"description": "User Logout and remove token, cookies etc"
+					},
+					"response": [
+						{
+							"name": "Sucesss",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/auth/logout?allDevices=true",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"logout"
+									],
+									"query": [
+										{
+											"key": "allDevices",
+											"value": "true",
+											"description": "true or false"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "RTOKEN=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; SameSite=None"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a-bAsFyilMr4Ra1hIU5PyoyFRunpI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Feb 2023 08:36:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Un Authorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/auth/logout?allDevices=true",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"logout"
+									],
+									"query": [
+										{
+											"key": "allDevices",
+											"value": "true",
+											"description": "true or false"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-AQps8voplm/ABatefmH34cCownU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Feb 2023 08:40:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Token Invalid\"\n}"
+						}
+					]
+				}
+			],
+			"description": "User(s) must be _authenticated_ before accessing any API.\n\n  \nThe `AUTH API` will return `accessToken`, `refreshToken` and `DID`  \n`API` has provided `Cookies` for clients with `expiration time`.  \nTo change the `lifetime`, look in the `.env` file. Expiration time is used to handle `JWT Token` and `Cookie` expiration\n\nNotes:\n\n- `accessToken` will be returned in response body\n- `refreshToken` will be returned as `Cookie` with name `RTOKEN`\n- `deviceId` is the _**device identifier**_ and will be returned as a `Cookie` with name `DID`",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "USER",
+			"item": [
+				{
+					"name": "CREATE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"user\",\n    \"lastName\": \"baru\",\n    \"gender\": \"Man\",\n    \"userName\": \"user1\",\n    \"emailAddress\": \"user1@gmail.com\",\n    \"password\": \"User123!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/v1/users",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"users"
+							]
+						},
+						"description": "Create user use `JSON` payload to create a user"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"Super\",\n    \"lastName\": \"Admin\",\n    \"gender\": \"Man\",\n    \"userName\": \"superadmin\",\n    \"emailAddress\": \"superadmin@gmail.com\",\n    \"password\": \"SuperAdmin123!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/users",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "69"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"45-dvp2xLeQ7/Vb5eMFuzfcczKfWBU\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 18:56:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": \"63ea87cef26e1fd489b65dfe\"\n}"
+						},
+						{
+							"name": "Err Username exist",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"Super\",\n    \"lastName\": \"Admin\",\n    \"gender\": \"Man\",\n    \"userName\": \"superadmin\",\n    \"emailAddress\": \"superadmin@gmail.com\",\n    \"password\": \"SuperAdmin123!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/users",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "62"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3e-t8vNDnM/fR/QHlNwpQIu/RPb2C4\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 19:05:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"The userName has been registered!\"\n}"
+						},
+						{
+							"name": "Err Email exist",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"Super\",\n    \"lastName\": \"Admin\",\n    \"gender\": \"Man\",\n    \"userName\": \"superadmin1\",\n    \"emailAddress\": \"superadmin@gmail.com\",\n    \"password\": \"SuperAdmin123!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/users",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "66"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"42-D3NpzOgvtlRnyg6t1O553M6dw5Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 19:06:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"The emailAddress has been registered!\"\n}"
+						},
+						{
+							"name": "Err Valiation missing field",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"Super\",\n    \"lastName\": \"Admin\",\n    \"userName\": \"superadmin\",\n    \"emailAddress\": \"superadmin@gmail.com\",\n    \"password\": \"SuperAdmin123!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/users",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "125"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7d-4LhsSmmciEgOTZXh8HTQ0uJaOlo\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 19:07:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Validation Error!\",\n    \"errors\": [\n        {\n            \"param\": \"gender\",\n            \"key\": \"required\",\n            \"message\": \"Gender is required!\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Err Validation additional field",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"Super\",\n    \"lastName\": \"Admin\",\n    \"gender\": \"Man\",\n    \"userName\": \"superadmin\",\n    \"emailAddress\": \"superadmin@gmail.com\",\n    \"password\": \"SuperAdmin123!\",\n    \"xxx\": \"xxx\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/users",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "150"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"96-59Bp5zKJI6c7pqrK77QhwsgPMTs\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 19:07:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Validation Error!\",\n    \"errors\": [\n        {\n            \"param\": \"xxx\",\n            \"key\": \"additionalProperties\",\n            \"message\": \"must NOT have additional properties\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Err UnAuthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"Super\",\n    \"lastName\": \"Admin\",\n    \"gender\": \"Man\",\n    \"userName\": \"superadmin\",\n    \"emailAddress\": \"superadmin@gmail.com\",\n    \"password\": \"SuperAdmin123!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/users",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-Z5B6VWblRXnXpFIt27nH3EQsmvE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 19:19:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Token invalid\"\n}"
+						}
+					]
+				},
+				{
+					"name": "UPDATE CREDENTIAL",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"SuperAdmin123!\",\n    \"newPassword\": \"Superadmin123!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/v1/users/password/superadmin",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"password",
+								"superadmin"
+							]
+						},
+						"description": "`Patch` password user use `JSON` payload to update user password.\n\nfields:\n\n- password, _`required`_\n- newPassword, _`required`_\n    \n\nNoted: Changing password will remove Token Bearer"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"password\": \"SuperAdmin123!\",\n    \"newPassword\": \"Superadmin123!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/users/password/superadmin",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"password",
+										"superadmin"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a-bAsFyilMr4Ra1hIU5PyoyFRunpI\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 19:39:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Err Incorrect pwd",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"password\": \"Superadmin123!!\",\n    \"newPassword\": \"Superadmin123!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/users/password/superadmin",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"password",
+										"superadmin"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2e-zh0vY5b8q+3+A56cgBho6MnD5GI\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 19:38:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Incorect Password\"\n}"
+						},
+						{
+							"name": "Un Authorized, password has changed",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"password\": \"!Haruslolos123\",\n    \"newPassword\": \"Haruslolos123!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/users/password",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"password"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "12"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c-dAuDFQrdjS3hezqxDTNgW7AOlYk\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 19:38:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Unauthorized"
+						}
+					]
+				},
+				{
+					"name": "GET ALL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/v1/users",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"users"
+							],
+							"query": [
+								{
+									"key": "userName",
+									"value": "user",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Fetch all list users"
+					},
+					"response": [
+						{
+							"name": "Success with filter",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/users?userName=user",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"users"
+									],
+									"query": [
+										{
+											"key": "userName",
+											"value": "user"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "484"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1e4-QgyvTUnXqs4MDznxqtx1UmwwTgs\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 19:35:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": [\n        {\n            \"firstName\": \"user\",\n            \"lastName\": \"baru\",\n            \"gender\": \"Man\",\n            \"userName\": \"user\",\n            \"emailAddress\": \"user@gmail.com\",\n            \"infoLogin\": {\n                \"hash\": \"ca2658da7607e51c90f34c40673e90703f3fd166325bb93e7af42996602a908ad9001549d89e19680cd57ccabc63f5ff175e79602ca70686b230750df11a132a\",\n                \"salt\": \"9QivnIANDqJZlrX6tknuotPULAiX+sS4eiOUsO+ODAU=\",\n                \"iterations\": 13786\n            },\n            \"createdAt\": \"2023-02-13T19:29:30.069Z\",\n            \"updatedAt\": \"2023-02-13T19:29:30.069Z\",\n            \"_id\": \"63ea8f9a33fc7d066c2a1c60\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Success without filter",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/users",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users"
+									],
+									"query": [
+										{
+											"key": "userName",
+											"value": "user",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "939"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3ab-EmJuGPVWTezhgJtr+GnT4lQMs6k\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 19:35:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": [\n        {\n            \"firstName\": \"user\",\n            \"lastName\": \"baru\",\n            \"gender\": \"Man\",\n            \"userName\": \"user\",\n            \"emailAddress\": \"user@gmail.com\",\n            \"infoLogin\": {\n                \"hash\": \"ca2658da7607e51c90f34c40673e90703f3fd166325bb93e7af42996602a908ad9001549d89e19680cd57ccabc63f5ff175e79602ca70686b230750df11a132a\",\n                \"salt\": \"9QivnIANDqJZlrX6tknuotPULAiX+sS4eiOUsO+ODAU=\",\n                \"iterations\": 13786\n            },\n            \"createdAt\": \"2023-02-13T19:29:30.069Z\",\n            \"updatedAt\": \"2023-02-13T19:29:30.069Z\",\n            \"_id\": \"63ea8f9a33fc7d066c2a1c60\"\n        },\n        {\n            \"_id\": \"63ea8edeb1c4594d460bf06a\",\n            \"firstName\": \"Super\",\n            \"lastName\": \"Admins\",\n            \"gender\": \"Man\",\n            \"userName\": \"superadmin\",\n            \"emailAddress\": \"superadmin@gmail.com\",\n            \"infoLogin\": {\n                \"hash\": \"0c3d37e8400d491340aaebcbd61d03dbcc633ab5bc2a68db5c9a89405a61d5e1ea27305be13d1e816feb5909aa05d8950e22e7fccfdced84f484d6183d7c9153\",\n                \"salt\": \"0HsD05G4VWBiHbddEo9MaDqvQSekNCIaUdaDmjtc/R0=\",\n                \"iterations\": 25475\n            },\n            \"createdAt\": \"2023-02-13T19:28:27.894Z\",\n            \"updatedAt\": \"2023-02-13T19:28:27.894Z\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Un Authorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local}}/v1/users",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-AQps8voplm/ABatefmH34cCownU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Feb 2023 08:44:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Token Invalid\"\n}"
+						}
+					]
+				},
+				{
+					"name": "GET TABLE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/v1/users/table",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"table"
+							],
+							"query": [
+								{
+									"key": "sortBy",
+									"value": "status",
+									"description": "userName, emailAddress, identityNumber, accountNumber ",
+									"disabled": true
+								},
+								{
+									"key": "sortType",
+									"value": "desc",
+									"description": "asc, desc and/or  0, 1",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "superadmin",
+									"description": "string",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Fetch `User` using pagination\n\nallowed filter/search by multiple fields\n\n- firstName\n- username\n- email\n    \n\ncan be sorted by those fields as well\n\n`sortBy` = status\n\n`sortType` = `desc` or `asc`"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/users/table",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"table"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "status",
+											"description": "firstName, username, email, status",
+											"disabled": true
+										},
+										{
+											"key": "sortType",
+											"value": "desc",
+											"description": "asc, desc and/or  0, 1",
+											"disabled": true
+										},
+										{
+											"key": "search",
+											"value": "nothing",
+											"description": "string",
+											"disabled": true
+										},
+										{
+											"key": "status",
+											"value": "",
+											"description": "true, flase",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "585"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"249-/aVtKcaFgYR/oO03/QjakxzDWCo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Feb 2023 08:49:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"sort\": {\n            \"updatedAt\": \"ASC\"\n        },\n        \"page\": 1,\n        \"size\": 10,\n        \"totalRecord\": 2,\n        \"totalPage\": 1,\n        \"data\": [\n            {\n                \"_id\": \"63df5fb20a6799aeaf22f724\",\n                \"userName\": \"superadmin\",\n                \"accountNumber\": 12345671,\n                \"emailAddress\": \"superadmin@gmail.com\",\n                \"identityNumber\": 1234567898765431,\n                \"createdAt\": \"2023-02-05T07:50:10.417Z\",\n                \"updatedAt\": \"2023-02-05T07:50:10.417Z\"\n            },\n            {\n                \"_id\": \"63df60c87116dd7ec619891b\",\n                \"userName\": \"user\",\n                \"accountNumber\": 12345672,\n                \"emailAddress\": \"user@gmail.com\",\n                \"identityNumber\": 1234567898765432,\n                \"createdAt\": \"2023-02-05T07:54:48.310Z\",\n                \"updatedAt\": \"2023-02-05T07:54:48.310Z\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "Success with filter user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/users/table?sortBy=status&sortType=desc&search=superadmin",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"table"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "status",
+											"description": "userName, emailAddress, identityNumber, accountNumber "
+										},
+										{
+											"key": "sortType",
+											"value": "desc",
+											"description": "asc, desc and/or  0, 1"
+										},
+										{
+											"key": "search",
+											"value": "superadmin",
+											"description": "string"
+										},
+										{
+											"key": "status",
+											"value": "",
+											"description": "true, flase",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "361"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"169-bVFFtELyO9fIUToaHiaQPNVYNpA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Feb 2023 08:51:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"sort\": {\n            \"status\": \"DESC\"\n        },\n        \"page\": 1,\n        \"size\": 10,\n        \"totalRecord\": 2,\n        \"totalPage\": 1,\n        \"data\": [\n            {\n                \"_id\": \"63df5fb20a6799aeaf22f724\",\n                \"userName\": \"superadmin\",\n                \"accountNumber\": 12345671,\n                \"emailAddress\": \"superadmin@gmail.com\",\n                \"identityNumber\": 1234567898765431,\n                \"createdAt\": \"2023-02-05T07:50:10.417Z\",\n                \"updatedAt\": \"2023-02-05T07:50:10.417Z\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "Success with sort",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/users/table?sortBy=status&sortType=desc",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"table"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "status",
+											"description": "firstName, username, email, status"
+										},
+										{
+											"key": "sortType",
+											"value": "desc",
+											"description": "asc, desc and/or  0, 1"
+										},
+										{
+											"key": "search",
+											"value": "nothing",
+											"description": "string",
+											"disabled": true
+										},
+										{
+											"key": "status",
+											"value": "",
+											"description": "true, flase",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "583"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"247-rqmio2rbwmec0IkpRzQY3nEs3B0\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Feb 2023 08:50:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"sort\": {\n            \"status\": \"DESC\"\n        },\n        \"page\": 1,\n        \"size\": 10,\n        \"totalRecord\": 2,\n        \"totalPage\": 1,\n        \"data\": [\n            {\n                \"_id\": \"63df5fb20a6799aeaf22f724\",\n                \"userName\": \"superadmin\",\n                \"accountNumber\": 12345671,\n                \"emailAddress\": \"superadmin@gmail.com\",\n                \"identityNumber\": 1234567898765431,\n                \"createdAt\": \"2023-02-05T07:50:10.417Z\",\n                \"updatedAt\": \"2023-02-05T07:50:10.417Z\"\n            },\n            {\n                \"_id\": \"63df60c87116dd7ec619891b\",\n                \"userName\": \"user\",\n                \"accountNumber\": 12345672,\n                \"emailAddress\": \"user@gmail.com\",\n                \"identityNumber\": 1234567898765432,\n                \"createdAt\": \"2023-02-05T07:54:48.310Z\",\n                \"updatedAt\": \"2023-02-05T07:54:48.310Z\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "Un Authorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local}}/v1/users/table",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"table"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-AQps8voplm/ABatefmH34cCownU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Feb 2023 08:44:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Token Invalid\"\n}"
+						}
+					]
+				},
+				{
+					"name": "GET ONE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/v1/users/users",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"users"
+							]
+						},
+						"description": "Fetch a single user using `identityNumber`"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/users/user",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"user"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "482"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1e2-0in78DX1B4mvtk8r5+SZoDNwoR0\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 19:30:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"firstName\": \"user\",\n        \"lastName\": \"baru\",\n        \"gender\": \"Man\",\n        \"userName\": \"user\",\n        \"emailAddress\": \"user@gmail.com\",\n        \"infoLogin\": {\n            \"hash\": \"ca2658da7607e51c90f34c40673e90703f3fd166325bb93e7af42996602a908ad9001549d89e19680cd57ccabc63f5ff175e79602ca70686b230750df11a132a\",\n            \"salt\": \"9QivnIANDqJZlrX6tknuotPULAiX+sS4eiOUsO+ODAU=\",\n            \"iterations\": 13786\n        },\n        \"createdAt\": \"2023-02-13T19:29:30.069Z\",\n        \"updatedAt\": \"2023-02-13T19:29:30.069Z\",\n        \"_id\": \"63ea8f9a33fc7d066c2a1c60\"\n    }\n}"
+						},
+						{
+							"name": "Err not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/users/users",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"users"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "44"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2c-sin+Syqaz/wsB0OeR9xX+Y2n4Ew\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 19:30:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"User not found!\"\n}"
+						},
+						{
+							"name": "Un Authorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local}}/v1/users/superadmin",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"superadmin"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-AQps8voplm/ABatefmH34cCownU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Feb 2023 08:44:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Token Invalid\"\n}"
+						}
+					]
+				},
+				{
+					"name": "PUT",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Super\",\n    \"lastName\": \"Admins\",\n    \"gender\": \"Man\",\n    \"userName\": \"superadmin\",\n    \"emailAddress\": \"user@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/v1/users/superadmin",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"superadmin"
+							]
+						},
+						"description": "Update user use `JSON` payload to update a user"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"Super\",\n    \"lastName\": \"Admins\",\n    \"gender\": \"Man\",\n    \"userName\": \"superadmin\",\n    \"emailAddress\": \"superadmin@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/v1/users/superadmin",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"superadmin"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "497"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1f1-I4IMi7Q7HU7tcRemW0tE0pprLgE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 19:28:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"_id\": \"63ea8edeb1c4594d460bf06a\",\n        \"firstName\": \"Super\",\n        \"lastName\": \"Admins\",\n        \"gender\": \"Man\",\n        \"userName\": \"superadmin\",\n        \"emailAddress\": \"superadmin@gmail.com\",\n        \"infoLogin\": {\n            \"hash\": \"0c3d37e8400d491340aaebcbd61d03dbcc633ab5bc2a68db5c9a89405a61d5e1ea27305be13d1e816feb5909aa05d8950e22e7fccfdced84f484d6183d7c9153\",\n            \"salt\": \"0HsD05G4VWBiHbddEo9MaDqvQSekNCIaUdaDmjtc/R0=\",\n            \"iterations\": 25475\n        },\n        \"createdAt\": \"2023-02-13T19:28:27.894Z\",\n        \"updatedAt\": \"2023-02-13T19:28:27.894Z\"\n    }\n}"
+						},
+						{
+							"name": "Err Validation additional field(s)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"Super\",\n    \"lastName\": \"Admin\",\n    \"gender\": \"Man\",\n    \"userName\": \"superadmin\",\n    \"emailAddress\": \"superadmin@gmail.com\",\n    \"password\": \"SuperAdmin123!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/users/1234567898765432",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"1234567898765432"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "155"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9b-9ZSypIzQD7pUi2x4+7Qm9JgvfZs\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 19:21:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Validation Error!\",\n    \"errors\": [\n        {\n            \"param\": \"password\",\n            \"key\": \"additionalProperties\",\n            \"message\": \"must NOT have additional properties\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Err Not found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"Super\",\n    \"lastName\": \"Admin\",\n    \"gender\": \"Man\",\n    \"userName\": \"superadmin\",\n    \"emailAddress\": \"superadmin@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/users/1234567898765432",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"1234567898765432"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "44"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2c-sin+Syqaz/wsB0OeR9xX+Y2n4Ew\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 19:22:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"User not found!\"\n}"
+						},
+						{
+							"name": "Err email exist",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"Super\",\n    \"lastName\": \"Admins\",\n    \"gender\": \"Man\",\n    \"userName\": \"superadmin\",\n    \"emailAddress\": \"user@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/users/superadmin",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"superadmin"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "66"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"42-D3NpzOgvtlRnyg6t1O553M6dw5Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 19:29:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"The emailAddress has been registered!\"\n}"
+						},
+						{
+							"name": "Un Authorized",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"Super\",\n    \"lastName\": \"Admin\",\n    \"gender\": \"Man\",\n    \"userName\": \"superadmin\",\n    \"emailAddress\": \"superadmin@gmail.com\",\n    \"password\": \"SuperAdmin123!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/v1/users/superadmin",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"superadmin"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-AQps8voplm/ABatefmH34cCownU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Feb 2023 08:44:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Token Invalid\"\n}"
+						}
+					]
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/v1/users/user1",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"user1"
+							]
+						},
+						"description": "Delete a single user using `idUser`\n\nOnly Admin can perform this API"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/users/user1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"user1"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a-bAsFyilMr4Ra1hIU5PyoyFRunpI\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 19:33:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Un Authorized",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/users/user2",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"user2"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-AQps8voplm/ABatefmH34cCownU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 05 Feb 2023 08:44:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Token Invalid\"\n}"
+						}
+					]
+				}
+			],
+			"description": "`Users` directory contains all the user related APIs. For authentication these apis requrie `AuthBearerToken`"
+		},
+		{
+			"name": "JOB",
+			"item": [
+				{
+					"name": "JOBS Pagination",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/v1/jobs",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"jobs"
+							],
+							"query": [
+								{
+									"key": "description",
+									"value": "python",
+									"disabled": true
+								},
+								{
+									"key": "location",
+									"value": "Schwerin",
+									"disabled": true
+								},
+								{
+									"key": "full_time",
+									"value": "false",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success withoout filter",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/jobs",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"jobs"
+									],
+									"query": [
+										{
+											"key": "description",
+											"value": "python",
+											"disabled": true
+										},
+										{
+											"key": "location",
+											"value": "Schwerin",
+											"disabled": true
+										},
+										{
+											"key": "full_time",
+											"value": "false",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "2",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "47143"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b827-NTds4YBkUzHYYRot+QGiU2EPNhw\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 21:57:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"data\": [\n            {\n                \"id\": \"32bf67e5-4971-47ce-985c-44b6b3860cdb\",\n                \"type\": \"Full Time\",\n                \"url\": \"https://jobs.github.com/positions/32bf67e5-4971-47ce-985c-44b6b3860cdb\",\n                \"created_at\": \"Wed May 19 00:49:17 UTC 2021\",\n                \"company\": \"SweetRush\",\n                \"company_url\": \"https://www.sweetrush.com/\",\n                \"location\": \"Remote\",\n                \"title\": \"Senior Creative Front End Web Developer\",\n                \"description\": \"<p><strong>SweetRush has an exciting opportunity for an experienced creative front-end developer (full stack is also acceptable) with an eye for graphic and UX design!</strong></p>\\n<p><strong>ABOUT THE ROLE:</strong></p>\\n<p>This is an important role on the Engineering and Development department’s Course Development team, and you will be reporting directly to the Course Development team lead.</p>\\n<p>Historically, the developers most successful in this role contribute to multiple projects at the same time; show a willingness to improve existing techniques, frameworks, and templates; and come up with innovations of their own. You will succeed if you truly enjoy active collaboration with your colleagues and don’t mind stepping in when your help is required.</p>\\n<p>This is a remote position and a great opportunity to work from home. Candidates from all geographic locations are welcome to apply; however, our development team is mostly based in North and Latin America, and you should be willing to work during our business hours.</p>\\n<p><strong>REQUIRED SKILLS:</strong></p>\\n<p><strong>Front end</strong></p>\\n<ul>\\n<li>7+ years as a front-end or full-stack developer in a creative environment</li>\\n<li>Expert-level JavaScript skills—Vanilla JS expertise is as important as the knowledge of frameworks and libraries</li>\\n<li>High level of competency in HTML5 and CSS3</li>\\n<li>Familiarity with one or more frameworks, preferably <strong>React and Node.js</strong>\\n</li>\\n<li>While React is the most commonly used framework at the moment, your proven ability to quickly harness unfamiliar technology is more important than an intimate knowledge of any of the given frameworks.</li>\\n<li><strong>Most importantly - you can look at just about any cool effect, interaction, animation, parallax, website on the web, and say - Even if I can’t do this now, I want to try!</strong></li>\\n<li>Understanding of responsive design and mobile-first principles</li>\\n</ul>\\n<p><strong>Soft skills and generic productivity tools</strong></p>\\n<ul>\\n<li>Ability to clearly communicate in English</li>\\n<li>English verbal communication skills are an absolute must because the position requires frequent interaction with peers and clients.</li>\\n<li>Experience with version control systems such as Git or Subversion</li>\\n<li>Experience working in a team development environment or demonstrating a capacity to do so</li>\\n<li>Enjoy learning and experimenting, open to new ideas</li>\\n</ul>\\n<p><strong>YOU WILL IMPRESS EVERYONE IF YOU:</strong></p>\\n<ul>\\n<li>Have built a learning simulation</li>\\n<li>Have experience with mobile app development and distribution</li>\\n<li>Have experience with graphic and UX design</li>\\n<li>Know anything about Adapt Framework</li>\\n</ul>\\n<p><strong>YOU MAY BE EXPECTED TO:</strong></p>\\n<ul>\\n<li>Complete a test assignment</li>\\n<li>Be interviewed by a number of highly judgmental yet supremely talented future colleagues</li>\\n</ul>\\n<p><strong>THE ESSENCE OF THE JOB</strong></p>\\n<p>OK, now that you’ve made it through all the obligatory language, you may be wondering what this position is really all about. Therefore, please read the rest of this job description carefully!</p>\\n<p>It all boils down to your ability to make a simple claim: <strong>I can do it!</strong></p>\\n<p>If we show you an interactive website with intricate animations, a complicated menu system, and multiple interdependencies, you should state: <strong>I can do it!</strong></p>\\n<p>If we need to harness a complex web-based gaming engine and use it for the first time to build a learning simulation, you should confidently assert: <strong>I can do it!</strong></p>\\n<p>If we need to produce a large volume of digital training materials in a record short period of time, you should answer: <strong>I can do it!</strong></p>\\n<p>And if we need an adventurous engineer to lead the team in the creation of a system that is completely different from everything we have done before, we’re most definitely looking for the loud <strong>I can do it!</strong></p>\\n<p>And even more importantly, you must <strong>want to do it</strong>.</p>\\n<p>SweetRush is a team of winners. These are not empty words. Just check out our impressive industry trophy shelf, which includes this recent success: <a href=\\\"https://www.sweetrush.com/sweetrush-wins-16-awards-brandon-hall-awards-2020\\\">https://www.sweetrush.com/sweetrush-wins-16-awards-brandon-hall-awards-2020</a>.</p>\\n<p>As a winner, you will always want the ball. Want to do better. Want to be more creative and efficient. Join us, and let's see if we can win even more by working together!</p>\\n<p>This is a work-from-home opportunity! We are 100% virtual, and all communications occur over digital channels (Skype/Web Share/email), apart from infrequent on-site meetings. Occasional travel may be required.</p>\\n<p><strong>Please note: We're all about remote work and have collaborators based all around the world; however, SweetRush is a US-based company, and English is our primary language. If you'd like to be considered for this opportunity, please submit your resume in English.</strong></p>\\n\",\n                \"how_to_apply\": \"<p>If this describes your interests and experience, please submit your current resume and salary requirements through the following link:\\n<a href=\\\"https://www.sweetrush.com/join-us/\\\">https://www.sweetrush.com/join-us/</a></p>\\n\",\n                \"company_logo\": \"https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaUtqIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--82886ff47e94ff4c0255b95773a9667644768b2b/SR%20Logo.png\"\n            },\n            {\n                \"id\": \"7638eee4-4e75-4c06-a920-ea7619a311b5\",\n                \"type\": \"Full Time\",\n                \"url\": \"https://jobs.github.com/positions/7638eee4-4e75-4c06-a920-ea7619a311b5\",\n                \"created_at\": \"Tue May 18 17:12:52 UTC 2021\",\n                \"company\": \"MANDARIN MEDIEN Gesellschaft für digitale Lösungen mbH\",\n                \"company_url\": \"https://www.mandarin-medien.de/\",\n                \"location\": \"Schwerin\",\n                \"title\": \"Systemadministrator:in\",\n                \"description\": \"<p>2002 sind wir als Internetagentur gestartet. Heute bezeichnen wir uns als Digitalagentur. Das Spielfeld ist heute breiter und greift tiefer in bestehende Geschäftsbereiche ein. In unseren 3 Units MARKETING, DIGITAL &amp; TALENT arbeiten über 80 Macher, Nerds und Kreative nach einem Prinzip: Messbar mehr Erfolg. Das heißt konkret: Klare Ziele. Permanente Optimierung. Transparentes Reporting.</p>\\n<p><strong>Wer wir sind</strong></p>\\n<p>Wir sind Zuhörer, Strategen, Kreative, Experten, Kollegen, Freunde, Spaßmacher, keine Großeredenschwinger, Stille, Laute, Sprachgewandte, Texter, Erfolgshungrige, Macher.</p>\\n<p><strong>WIR HELFEN MENSCHEN UND MARKEN ÜBER SICH HINAUSZUWACHSEN.\\nWIR SIND MANDARIN MEDIEN!</strong></p>\\n<p><strong>Das wären Deine Aufgaben</strong></p>\\n<p>Wir bieten Dir einen freien Platz in unserem IT Team als Systemadministrator:in in unserer Digitalagentur in Schwerin. Mit deinem Team wirst du für unsere Kunden den digitalen Ausbau vorantreiben und die Chance bekommen unsere digitale Unit noch weiter auszubauen und größer werden zu lassen.\\nChristian, Christoph, Fabrice, Gordon, Gérard, Marcel, Christoph, Moritz, Sebastian &amp; Steffen freuen sich, wenn DU ihr Team komplett machst.</p>\\n<p><strong>Das wären Deine Aufgaben</strong></p>\\n<ul>\\n<li>Erster Ansprechpartner für deine Kunden, via Telefon, E-Mail, Remote oder auch direkt vor Ort</li>\\n<li>Umgang mit verschiedenen Themen und Umgebungen\\nz.B: Client-, Server-, Netzwerk- und im Cloudbereich</li>\\n<li>Fehleranalyse und -beseitigung</li>\\n<li>Installation, Administration und Wartung von Kundeninfrastruktur</li>\\n<li>First- und Second-Level Support</li>\\n<li>Projektbezogene Planung, Vorbereitung und Durchführung</li>\\n</ul>\\n<p><strong>Das bringst Du mit</strong></p>\\n<ul>\\n<li>Eine abgeschlossene Ausbildung als Fachinformatiker für Systemintegration</li>\\n<li>Führerschein Klasse B</li>\\n<li>Kunden- sowie Lösungsorientiertes handeln</li>\\n<li>Verantwortungsbewusstsein für deine eigenständige Zeiteinteilung</li>\\n<li>Bereitschaft jeden Tag dazu zu lernen und mit deinen Aufgaben zu wachsen</li>\\n<li>Spaß an der Arbeit im Team und mit dem Team neue Ideen zu entwickeln</li>\\n<li>Zertifizierungen im Bereich Microsoft, VMWare und Cisco wünschenswert</li>\\n</ul>\\n<p>Klingt ganz schön viel? Nobody is perfect! Wir lernen alle jeden Tag voneinander und nehmen uns jede Woche Zeit für Weiterbildung. Die ein oder andere Fähigkeit kannst Du also auch nach Deinem Start bei uns erlernen oder vertiefen.</p>\\n<p><strong>Das bieten wir Dir</strong></p>\\n<ul>\\n<li>Einen spannenden und anspruchsvollen Agentur-Job in MV</li>\\n<li>Eine große Bandbreite an Projekten - Handwerk bis Konzern</li>\\n<li>Ein hervorragendes Arbeitsklima und kurze Entscheidungswege</li>\\n<li>Zeit für Deine Weiterbildung,  je Woche, plus Budget</li>\\n<li>Moderne Arbeitsmittel und neueste Programme</li>\\n<li>Unterstützung Deiner Gesundheit</li>\\n<li>Möglichkeit eines Fahrtkostenzuschusses</li>\\n<li>Flexibles Arbeiten - von Zuhause oder einfach mal am Strand</li>\\n<li>Kreative Denkpausen mit dem Boot auf dem Schweriner See</li>\\n<li>Teamevents, wie z.B. Grillen, MANDARIN-Kino, Besuch des Weihnachtsmarktes uvm.</li>\\n<li>Ein Büro mitten in der City sowie leckeres Obst, Kaffee, Tee, Wasser und Mate</li>\\n</ul>\\n<p><strong>Kontakt</strong></p>\\n<p>​​​​​Passt alles für Dich?</p>\\n<p>Dann sende Deine Bewerbung mit Deinen Vorstellungen zu Gehalt und Urlaub an Corinna Lepsien, <a href=\\\"mailto:jobs@mandarin-medien.de\\\">jobs@mandarin-medien.de</a>. Falls Du gerade unterwegs bist, kannst Du uns auch einfach einen Link von Deinem Xing- oder LinkedIn Profil schicken.</p>\\n<p><img src=\\\"https://camo.githubusercontent.com/26c2737b75fe2e3161d0a357a200081f9e8d0243/68747470733a2f2f742e676f686972696e672e636f6d2f682f31306564346231663739316361656138313233643961343663393034333134353938646566643238663733363838366634363661363332383333376361376130\\\"></p>\\n\",\n                \"how_to_apply\": \"<p><a href=\\\"https://t.gohiring.com/h/83f7df34249addb0bebc8dc680310d1ded43220a748ee285e27989a457dd10ea\\\">Application form</a></p>\\n\",\n                \"company_logo\": \"https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaCtqIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--8d0339b9e43b0dca160b9db73b230b6067e39b05/MANDARIN%20MEDIEN%20Gesellschaft%20fu%CC%88r%20digitale%20Lo%CC%88sungen%20mbH.jpeg\"\n            },\n            {\n                \"id\": \"1f004d5a-ef14-4533-8c0b-5f354978ddae\",\n                \"type\": \"Full Time\",\n                \"url\": \"https://jobs.github.com/positions/1f004d5a-ef14-4533-8c0b-5f354978ddae\",\n                \"created_at\": \"Tue May 18 17:09:49 UTC 2021\",\n                \"company\": \"MANDARIN MEDIEN Gesellschaft für digitale Lösungen mbH\",\n                \"company_url\": \"https://www.mandarin-medien.de/\",\n                \"location\": \"Schwerin\",\n                \"title\": \"IT-System- und Netzwerkadministrator:in\",\n                \"description\": \"<p>2002 sind wir als Internetagentur gestartet. Heute bezeichnen wir uns als Digitalagentur. Das Spielfeld ist heute breiter und greift tiefer in bestehende Geschäftsbereiche ein. In unseren 3 Units MARKETING, DIGITAL &amp; TALENT arbeiten über 80 Macher, Nerds und Kreative nach einem Prinzip: Messbar mehr Erfolg. Das heißt konkret: Klare Ziele. Permanente Optimierung. Transparentes Reporting.</p>\\n<p><strong>Wer wir sind</strong></p>\\n<p>Wir sind Zuhörer, Strategen, Kreative, Experten, Kollegen, Freunde, Spaßmacher, keine Großeredenschwinger, Stille, Laute, Sprachgewandte, Texter, Erfolgshungrige, Macher.</p>\\n<p><strong>WIR HELFEN MENSCHEN UND MARKEN ÜBER SICH HINAUSZUWACHSEN.\\nWIR SIND MANDARIN MEDIEN!</strong></p>\\n<p><strong>Das wären Deine Aufgaben</strong></p>\\n<p>Wir bieten Dir einen freien Platz in unserem IT-Team als Systemadministrator:in, in Schwerin. Mit deinem Team wirst du für unsere Kunden moderne IT Landschaften erschaffen, eigenverantwortlich aber immer mit Teamsupport arbeiten, dich persönlich und fachlich immer weiterentwickeln.</p>\\n<p>Unsere IT-Crew entwickelt und supportet zum Beispiel Netzwerke, Cloud Lösungen, TK Anlagen, Live Streamings von Konferenzen, spezifische Branchensoftware und individuelle Digitalisierungsprojekte für Kunden aus den Branchen: Energieversorgung, Sozial- und Wohlfahrtsverbände, Pflegeeinrichtungen sowie Unternehmen aus den Bereichen Lebensmittelindustrie und Medizintechnik.</p>\\n<p>Christian, Steffen, Christoph, Fabrice, Gérard, Marcel, Christoph, Moritz, Sebastian &amp;  Gordon freuen sich, wenn DU ihr Team komplett machst.</p>\\n<p><strong>Das wären Deine Aufgaben</strong></p>\\n<ul>\\n<li>Erster Ansprechpartner für deine Kunden, via Telefon, E-Mail, Remote oder auch direkt vor Ort</li>\\n<li>Umgang mit verschiedenen Themen und Umgebungen\\nz.B: Client-, Server-, Netzwerk- und im Cloudbereich</li>\\n<li>Fehleranalyse und -beseitigung</li>\\n<li>Installation, Administration und Wartung von Kundeninfrastruktur</li>\\n<li>First- und Second-Level Support</li>\\n<li>Projektbezogene Planung, Vorbereitung und Durchführung</li>\\n</ul>\\n<p><strong>Das bringst Du mit</strong></p>\\n<ul>\\n<li>Eine abgeschlossene Ausbildung als Fachinformatiker für Systemintegration</li>\\n<li>Führerschein Klasse B</li>\\n<li>Kunden- sowie Lösungsorientiertes handeln</li>\\n<li>Verantwortungsbewusstsein für deine eigenständige Zeiteinteilung</li>\\n<li>Bereitschaft jeden Tag dazu zu lernen und mit deinen Aufgaben zu wachsen</li>\\n<li>Spaß an der Arbeit im Team und mit dem Team neue Ideen zu entwickeln</li>\\n<li>Zertifizierungen im Bereich Microsoft, VMWare und Cisco wünschenswert</li>\\n</ul>\\n<p>Klingt ganz schön viel? Nobody is perfect! Wir lernen alle jeden Tag voneinander und nehmen uns jede Woche Zeit für Weiterbildung. Die ein oder andere Fähigkeit kannst Du also auch nach Deinem Start bei uns erlernen oder vertiefen.</p>\\n<p><strong>Das bieten wir Dir</strong></p>\\n<ul>\\n<li>Einen spannenden und anspruchsvollen Agentur-Job in MV</li>\\n<li>Eine große Bandbreite an Projekten - Handwerk bis Konzern</li>\\n<li>Ein hervorragendes Arbeitsklima und kurze Entscheidungswege</li>\\n<li>Zeit für Deine Weiterbildung,  je Woche, plus Budget</li>\\n<li>Moderne Arbeitsmittel und neueste Programme</li>\\n<li>Unterstützung Deiner Gesundheit</li>\\n<li>Möglichkeit eines Fahrtkostenzuschusses</li>\\n<li>Flexibles Arbeiten - von Zuhause oder einfach mal am Strand</li>\\n<li>Kreative Denkpausen mit dem Boot auf dem Schweriner See</li>\\n<li>Teamevents, wie z.B. Grillen, MANDARIN-Kino, Besuch des Weihnachtsmarktes uvm.</li>\\n<li>Ein Büro mitten in der City sowie leckeres Obst, Kaffee, Tee, Wasser und Mate</li>\\n</ul>\\n<p><strong>Kontakt</strong></p>\\n<p>Passt alles für Dich?</p>\\n<p>Dann sende Deine Bewerbung mit Deinen Vorstellungen zu Gehalt und Urlaub an Corinna Lepsien, <a href=\\\"mailto:jobs@mandarin-medien.de\\\">jobs@mandarin-medien.de</a>. Falls Du gerade unterwegs bist, kannst Du uns auch einfach einen Link von Deinem Xing- oder LinkedIn Profil schicken.</p>\\n<p><img src=\\\"https://camo.githubusercontent.com/7c8050f30305b6c7e0a255c3a35090adff7c8b0c/68747470733a2f2f742e676f686972696e672e636f6d2f682f62303261636662623138313036343332356430333531393536326135323633336262376136336436326166313763306638313463323663623362646166303565\\\"></p>\\n\",\n                \"how_to_apply\": \"<p><a href=\\\"https://t.gohiring.com/h/5f4466dcc594ef01a23adea56b03b1804a0ed6fae16d790b9758d8192250fb0c\\\">Application form</a></p>\\n\",\n                \"company_logo\": \"https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaDJqIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--8ad2112c9ebe7a1e14f3dee7b448a1c1a37abe03/MANDARIN%20MEDIEN%20Gesellschaft%20fu%CC%88r%20digitale%20Lo%CC%88sungen%20mbH.jpeg\"\n            },\n            {\n                \"id\": \"8913f893-e6e3-4d50-aaf4-94f8eb479ead\",\n                \"type\": \"Full Time\",\n                \"url\": \"https://jobs.github.com/positions/8913f893-e6e3-4d50-aaf4-94f8eb479ead\",\n                \"created_at\": \"Tue May 18 17:06:20 UTC 2021\",\n                \"company\": \"MANDARIN MEDIEN Gesellschaft für digitale Lösungen mbH\",\n                \"company_url\": \"https://www.mandarin-medien.de/\",\n                \"location\": \"Schwerin\",\n                \"title\": \"Frontend Entwickler:in\",\n                \"description\": \"<p>2002 sind wir als Internetagentur gestartet. Heute bezeichnen wir uns als Digitalagentur. Das Spielfeld ist heute breiter und greift tiefer in bestehende Geschäftsbereiche ein. In unseren 3 Units MARKETING, DIGITAL &amp; TALENT arbeiten über 80 Macher, Nerds und Kreative nach einem Prinzip: Messbar mehr Erfolg. Das heißt konkret: Klare Ziele. Permanente Optimierung. Transparentes Reporting.</p>\\n<p><strong>Wer wir sind</strong></p>\\n<p>2002 sind wir als Agentur gestartet. Heute arbeiten über 80 Macher, Nerds und Kreative bei uns. Wir sind Strategen, Experten, Zuhörer, Kollegen, Freunde, Aufdenpunktbringer, Sprachgewandte, Texter und Erfolgshungrige.\\nGemeinsam entwickeln wir sehr wirkungsvolle Lösungen in den Bereichen Digitales Marketing, Employer Branding und Digitalisierung für Marken, wie Cinestar, Vodafone, Garmin, Wemag und viele mehr. Wir entwickeln Online-Marketing-Strategien, bauen innovative Websites und haben auch sonst die gesamte Vielfalt des Agenturlebens zu bieten.</p>\\n<p><strong>Das wären Deine Aufgaben</strong></p>\\n<p><strong>Du willst eine Mandarine werden?</strong>\\nDu liebst gut bedienbare, gut aussehende und gut funktionierende Websites?\\nDu liebst es noch mehr, diese selbst zu entwickeln?\\nDu möchtest mit einem erfahrenen Team aus Anwendungsentwicklern, Konzeptern, Designern, Marketingexperten uvm. arbeiten? Eine Crew hinter dir haben, dir dir das Frontend überlässt?\\nDann bist du die perfekte Mandarine im Bereich FRONTEND DEVELOPMENT!</p>\\n<p><strong>Das bringst Du mit</strong></p>\\n<p><strong>DAS SOLLTEST DU MITBRINGEN:</strong></p>\\n<ul>\\n<li>Fundierte Kenntnisse in HTML,CSS, Javascript</li>\\n<li>Umgang mit entsprechenden Techniken und Frameworks (React, LESS/SASS, Tailwind, Bootstrap o.ä.)</li>\\n<li>Eigenständiges Arbeiten, Teamgeist, Kommunikationsfähigkeit</li>\\n<li>Ein sehr hohes Qualitätsbewusstsein</li>\\n</ul>\\n<p><strong>Von Vorteil sind:</strong></p>\\n<ul>\\n<li>Grundlegende Programmierkenntnisse z.B. in PHP</li>\\n<li>Verständnis von OOP</li>\\n<li>GIT Kenntnisse</li>\\n<li>Verständnis von Datenbanken, z.B. MySQL</li>\\n<li>Verständnis von API</li>\\n<li>Alltagssicheres Englisch</li>\\n</ul>\\n<p><strong>Nahezu großartig wären:</strong></p>\\n<ul>\\n<li>Drupal 7&amp;8 Kenntnisse</li>\\n<li>WordPress Erfahrung</li>\\n<li>Verständnis von Template Engines wie Twig oder Blade</li>\\n</ul>\\n<p>Klingt ganz schön viel? Nobody is perfect! Wir lernen jeden Tag voneinander und nehmen uns jede Woche Zeit für Weiterbildung. Die ein oder andere Fähigkeit kannst Du also auch nach Deinem Start bei uns erlernen oder vertiefen.</p>\\n<p><strong>Das bieten wir Dir</strong></p>\\n<p><strong>DAS KÖNNEN WIR DIR BIETEN:</strong></p>\\n<ul>\\n<li>Einen spannenden und anspruchsvollen Agentur-Job in MV</li>\\n<li>Eine große Bandbreite an Projekten - Handwerk bis Konzern</li>\\n<li>Ein hervorragendes Arbeitsklima und kurze Entscheidungswege</li>\\n<li>4 Stunden Zeit für deine Weiterbildung je Woche plus Budget</li>\\n<li>Neueste Arbeitsmittel und Programme</li>\\n<li>Unterstützung deiner Gesundheit</li>\\n<li>Fahrtkostenzuschuss</li>\\n<li>Flexible Arbeitsorte</li>\\n<li>Kreative Denkpausen mit dem Boot auf dem Schweriner See</li>\\n<li>Teamevents, wie z.B. Grillen, MANDARIN-Kino, Besuch des Weihnachtsmarktes und noch ein paar mehr</li>\\n<li>Ein Büro mit Blick auf den Schweriner See sowie lecker Obst, Kaffee, Tee, Wasser und Mate</li>\\n</ul>\\n<p><strong>Kontakt</strong></p>\\n<p>Passt alles für Dich? Dann schick deine Bewerbung mit deinen Vorstellungen zu Gehalt und Urlaub an Corinna Lepsien, <a href=\\\"mailto:jobs@mandarin-medien.de\\\">jobs@mandarin-medien.de</a>. Oder falls du gerade unterwegs bist einfach einen Link zu deinem Xing- oder LinkedIn Profil.</p>\\n<p><img src=\\\"https://camo.githubusercontent.com/da6ee29a15ea655c323d5f0c1b730031e993f7a6/68747470733a2f2f742e676f686972696e672e636f6d2f682f37306233363363363563343163653431666337333065333861633565626333313838333133653163613361323831303233333738376431333236313139303537\\\"></p>\\n\",\n                \"how_to_apply\": \"<p><a href=\\\"https://t.gohiring.com/h/eaf3f0c97d54fa8a2cc87ea55ba8e9a4ab96c37d6c2f915a3e302cb450ce3602\\\">Application form</a></p>\\n\",\n                \"company_logo\": \"https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaHVqIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0814678c4cc00f78262bd84da10eed4e7d39f77c/MANDARIN%20MEDIEN%20Gesellschaft%20fu%CC%88r%20digitale%20Lo%CC%88sungen%20mbH.jpeg\"\n            },\n            {\n                \"id\": \"ed80af1f-d0bb-43ef-8bb4-9eab63fc41ec\",\n                \"type\": \"Full Time\",\n                \"url\": \"https://jobs.github.com/positions/ed80af1f-d0bb-43ef-8bb4-9eab63fc41ec\",\n                \"created_at\": \"Tue May 18 16:12:42 UTC 2021\",\n                \"company\": \"Car Registration, Inc. \",\n                \"company_url\": null,\n                \"location\": \"Elk Grove, Ca - REMOTE\",\n                \"title\": \"Software Architect/Developer\",\n                \"description\": \"<p>Car Registration, Inc.</p>\\n<p>Car Registration, Inc. (CRI) provides comprehensive, online vehicle registration and titling services for consumers who desire or need a DMV alternative.  Currently licensed and bonded under the California DMV’s Business Partner Automation program, CRI successfully processes over 250,000 transactions per year while reducing wait times and allowing the CA DMV to reallocate its resources to other services and administrative tasks.  With CRI, customers can get same-day processing, next-day delivery, and comprehensive telephone and email support.  Through its website, CRI collects fees from vehicle owners, transmits fees to the DMV in real-time, and issues registration cards and stickers to the customer via USPS or express courier.</p>\\n<p>Job Description\\nCRI is a leader in providing consumers direct access to DMV services through our online technology. We provide customers the ability to skip the line at the DMV by using our online platform to renew, replace, or transfer their vehicle registration and title. You will join a small but profitable start-up with the ability to shape and grow our software. We are looking for a self-motivated software architect/developer who is comfortable working on a cloud-based full-stack built with Go, PHP, and JavaScript for both customer-facing and internal applications. In your role, you will join a small team of software developers to build new software, new features, and maintain existing functionality.</p>\\n<p>This is a full-time remote position with a competitive salary and benefits including medical, dental, vision, 401K plan, and more. We are based in Elk Grove, CA. Though you won’t work in the office, we regularly communicate via Slack and Google Meets. Our annual holiday party is fun and inclusive and offers a great opportunity to catch up with the team in person.</p>\\n<p>Skills &amp; Requirements\\n●\\tAbility to design and implement solutions to both frontend and backend problems from a non-technical specification into a finished feature\\n●\\t3+ years professional coding with Go, PHP, Python, Ruby, or another server-side scripting language\\n●\\t2+ years professional coding with JavaScript\\n●\\t3+ years professional experience with SQL database design (PostgreSQL, MySQL, Oracle, or MSSQL)\\n●\\tExperience integrating RESTful and/or gRPC APIs\\n●\\tExperience with DevOps practices including infrastructure as code, continuous integration, monitoring, and logging\\n●\\tComfortable developing in a Mac or Linux environment\\n●\\tFamiliarity with event-based functional architectures\\n●\\tFamiliarity with MVC or MVVM architectures\\n●\\tSecurity-conscious best practices in any software built\\n●\\tTeam lead experience</p>\\n<p>Desirable Qualifications\\n●\\t1+ year professional coding with the Go language\\n●\\tExperience with cloud-based distributed systems on providers such as AWS\\n●\\tExperience with docker or container technologies\\n●\\tExperience with CDNs\\n●\\tExperience developing web-based business applications with complex workflows\\n●\\tDatabase administration experience including setting up and maintaining replication servers\\n●\\tBachelor’s degree, preferably in Computer Science or related discipline</p>\\n<p>If you are interested, please send your resume to <a href=\\\"mailto:Jobs@carregistration.com\\\">Jobs@carregistration.com</a>.</p>\\n<p>CANDIDATES only, please.</p>\\n<p>Equal Opportunity Employer\\nCRI is an equal opportunity employer to all, regardless of age, ancestry, color, disability (mental and physical), exercising the right to family care and medical leave, gender, gender expression, gender identity, genetic information, marital status, medical condition, military or veteran status, national origin, political affiliation, race, religious creed, sex (includes pregnancy, childbirth, breastfeeding, and related medical conditions), and sexual orientation.</p>\\n<p>It is an objective of CRI to achieve a drug-free workplace. Any applicant for employment will be expected to behave in accordance with this objective.</p>\\n\",\n                \"how_to_apply\": \"<p>If you are interested, please send your resume to <a href=\\\"mailto:Jobs@carregistration.com\\\">Jobs@carregistration.com</a>.  CANDIDATES only, please.</p>\\n\",\n                \"company_logo\": \"https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaG1qIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--e3201f4f336dce8ebdee4d47073fde54081a827a/CRI%20FLSP%20Logo.png\"\n            },\n            {\n                \"id\": \"ecbe528e-ae60-45ad-9706-76819ae07c85\",\n                \"type\": \"Full Time\",\n                \"url\": \"https://jobs.github.com/positions/ecbe528e-ae60-45ad-9706-76819ae07c85\",\n                \"created_at\": \"Tue May 18 14:10:50 UTC 2021\",\n                \"company\": \"DEVK Versicherungen\",\n                \"company_url\": \"https://bewerbungsportal.devk.de/index\",\n                \"location\": \"Cologne\",\n                \"title\": \"Site Reliability Engineer / Systems Engineer (d/m/w)\",\n                \"description\": \"<p>Site Reliability Engineer / Systems Engineer (d/m/w)</p>\\n<p>Seit mehr als 130 Jahren legen Versicherte in Deutschland ihre Risiken des Alltags vertrauensvoll in die Hände der DEVK Versicherungen. Heute ist die DEVK bundesweit präsent und betreut die persönlichen Anliegen von über vier Millionen Kunden in allen Versicherungssparten.\\nIn unserem Team \\\"Akquiseanwendungen\\\" entwickeln wir mit agilen Methoden eine neue CRM-Software, die von unseren Kunden und Mitarbeitenden bereits erfolgreich genutzt wird. Wenn Sie unser Team durch Ihr DevOps-Wissen ergänzen und die fachliche Führung im Bereich der Systemumgebungen, Deployment Pipelines und Configuration Management übernehmen wollen, dann sind Sie bei uns richtig!</p>\\n<p>Ihre Aufgaben</p>\\n<ul>\\n<li>Entwicklung von komplexen Infrastrukturlösungen für unsere PEGA-Plattform</li>\\n<li>Konzeption und Entwicklung der Systemumgebungen auf Basis der AWS Cloud Plattform</li>\\n<li>Weiterentwicklung der Umgebungen</li>\\n<li>Ausbau und Automatisierung der Deployments</li>\\n<li>Weiterentwicklung des PEGA-Framewoks hinsichtlich Deployment, Containerisierung und Cloudfähigkeit</li>\\n</ul>\\n<p>Ihr Profil</p>\\n<ul>\\n<li>Erfolgreich abgeschlossenes IT-Studium oder vergleichbare Ausbildung mit mehrjähriger Berufserfahrung</li>\\n<li>Kenntnisse im AWS Cloud Umfeld wünschenswert</li>\\n<li>Praktische Erfahrung in der Softwareentwicklung</li>\\n<li>Kenntnisse im Bereich Postgres von Vorteil</li>\\n<li>Kommunikative Kompetenz verbunden mit Spaß an Teamarbeit</li>\\n<li>Innovationsfähigkeit und Aufgeschlossenheit für neue technologische Entwicklungen</li>\\n<li>Eigenverantwortliches Arbeiten in einem jungen und dynamischen Team</li>\\n</ul>\\n<p>Unsere Benefits</p>\\n<ul>\\n<li>Sichere Arbeitsplätze in einem stetig wachsenden Unternehmen</li>\\n<li>Eine hervorragende arbeitgeberfinanzierte betriebliche Altersversorgung</li>\\n<li>Flexible Arbeitszeitmodelle</li>\\n<li>Möglichkeit für Homeoffice / Mobiles Arbeiten</li>\\n<li>Stark vergünstigtes Job-Ticket</li>\\n</ul>\\n<p>Informieren Sie sich über unsere weiteren Benefits:\\n<a href=\\\"https://www.devk.de/karriere/devkjobwelt/innendienst/mitarbeitervorteile-innendienst.jsp\\\">https://www.devk.de/karriere/devkjobwelt/innendienst/mitarbeitervorteile-innendienst.jsp</a></p>\\n<p>Jetzt bewerben:\\n<a href=\\\"https://bewerbungsportal.devk.de/jobs/15540-site-reliability-engineer-systems-engineer-d-m-w/job_application/new?cid=662c9407-f8cb-4024-a169-90c1c45dcfb4&amp;jid=d3db0bd8-f058-4d83-aa1d-6cffd5856efd&amp;pid=f3077591-ffcf-4792-bbb4-e61afabb7a4d&amp;it=nHnGAeU9hdvm5G-BT-S5OA\\\">https://bewerbungsportal.devk.de/jobs/15540-site-reliability-engineer-systems-engineer-d-m-w/job_application/new?cid=662c9407-f8cb-4024-a169-90c1c45dcfb4&amp;jid=d3db0bd8-f058-4d83-aa1d-6cffd5856efd&amp;pid=f3077591-ffcf-4792-bbb4-e61afabb7a4d&amp;it=nHnGAeU9hdvm5G-BT-S5OA</a></p>\\n<p>DEVK-Stellenbörse:\\n<a href=\\\"https://bewerbungsportal.devk.de/index\\\">https://bewerbungsportal.devk.de/index</a></p>\\n<p>Wir freuen uns darauf, Sie persönlich kennenzulernen. Falls Sie noch Fragen haben, rufen Sie uns gerne an.</p>\\n<p>Ihre Ansprechpartnerin:\\nTanja Willing</p>\\n<p>Tel.: +49 221 757-1154</p>\\n\",\n                \"how_to_apply\": \"<p><a href=\\\"https://bewerbungsportal.devk.de/jobs/15540-site-reliability-engineer-systems-engineer-d-m-w/job_application/new?cid=662c9407-f8cb-4024-a169-90c1c45dcfb4&amp;jid=d3db0bd8-f058-4d83-aa1d-6cffd5856efd&amp;pid=f3077591-ffcf-4792-bbb4-e61afabb7a4d&amp;it=nHnGAeU9hdvm5G-BT-S5OA\\\">https://bewerbungsportal.devk.de/jobs/15540-site-reliability-engineer-systems-engineer-d-m-w/job_application/new?cid=662c9407-f8cb-4024-a169-90c1c45dcfb4&amp;jid=d3db0bd8-f058-4d83-aa1d-6cffd5856efd&amp;pid=f3077591-ffcf-4792-bbb4-e61afabb7a4d&amp;it=nHnGAeU9hdvm5G-BT-S5OA</a></p>\\n\",\n                \"company_logo\": \"https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaFNqIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--2d1f7983e07a4cd857aa2cabaaf39e6fc8e56005/DEVK.png\"\n            },\n            {\n                \"id\": \"0afc57b1-f535-4cf6-af94-4c1aa57bbcfa\",\n                \"type\": \"Full Time\",\n                \"url\": \"https://jobs.github.com/positions/0afc57b1-f535-4cf6-af94-4c1aa57bbcfa\",\n                \"created_at\": \"Tue May 18 14:05:17 UTC 2021\",\n                \"company\": \"DEVK Versicherungen\",\n                \"company_url\": \"https://bewerbungsportal.devk.de/index\",\n                \"location\": \"Cologne\",\n                \"title\": \"Cloud Platform Engineer (d/m/w)\",\n                \"description\": \"<p>Cloud Platform Engineer (d/m/w)</p>\\n<p>Seit mehr als 130 Jahren legen Versicherte in Deutschland ihre Risiken des Alltags vertrauensvoll in die Hände der DEVK Versicherungen. Heute ist die DEVK bundesweit präsent und betreut die persönlichen Anliegen von über vier Millionen Kunden in allen Versicherungssparten.\\nIn der DEVK IT sind bereits heute Cloud Lösungen ein wesentlicher Baustein, der künftig weiter ausgebaut werden soll. Als Cloud Platform Engineer (d/m/w) sind Sie verantwortlich für die Operationalisierung der Cloud Strategie und die Befähigung der DEVK für den Einsatz von Cloud Services.</p>\\n<p>Ihre Aufgaben</p>\\n<ul>\\n<li>Administration und Weiterentwicklung unserer Kubernetes Cluster</li>\\n<li>Entwicklung und Betrieb der Infrastruktur-Automatisierung mit Terraform / Terragrunt / Terratest</li>\\n<li>Optimierung der Deployment-Pipeline</li>\\n<li>Implementierung und Administration AWS Services</li>\\n<li>Betrieb, Entwicklung und Pflege von Docker Images</li>\\n<li>Administration und Weiterentwicklung von Security-Komponenten in AWS und Kubernetes</li>\\n</ul>\\n<p>Ihr Profil</p>\\n<ul>\\n<li>Entwickler-Mindset (trunk-based development, continuous delivery) mit Erfahrungen im Bereich der Containerorchestrierung (bevorzugt Kubernetes)</li>\\n<li>Erfahrungen mit Cloud Services (bevorzugt AWS)</li>\\n<li>Breites technisches Knowhow im Bereich Cloud und Container</li>\\n<li>Kenntnisse agiler Methoden</li>\\n<li>Gute Kenntnisse der folgenden Sprachen, Tools oder Technologien:\\no\\tKubernetes, Helm\\no\\tHashicorp Stack (Vault, Terraform, Packer, Consul)\\no\\tGolang\\no\\tElasticSearch, Kibana</li>\\n<li>Grundlagen in Netzwerk-Technologie</li>\\n<li>Spaß an Teamarbeit (Kommunikation, Knowhow-Aufbau im Team etc.)</li>\\n<li>Interesse an neuen Technologien und Offenheit für das Angebot der DEVK zur permanenten Weiterentwicklung</li>\\n</ul>\\n<p>Unsere Benefits</p>\\n<ul>\\n<li>Sichere Arbeitsplätze in einem stetig wachsenden Unternehmen</li>\\n<li>Eine hervorragende arbeitgeberfinanzierte betriebliche Altersversorgung</li>\\n<li>Flexible Arbeitszeitmodelle</li>\\n<li>Möglichkeit für Homeoffice / Mobiles Arbeiten</li>\\n<li>Stark vergünstigtes Job-Ticket</li>\\n</ul>\\n<p>Informieren Sie sich über unsere weiteren Benefits:\\n<a href=\\\"https://www.devk.de/karriere/devkjobwelt/innendienst/mitarbeitervorteile-innendienst.jsp\\\">https://www.devk.de/karriere/devkjobwelt/innendienst/mitarbeitervorteile-innendienst.jsp</a></p>\\n<p>Jetzt bewerben:\\n<a href=\\\"https://bewerbungsportal.devk.de/jobs/15252-cloud-platform-engineer-d-m-w/job_application/new?cid=662c9407-f8cb-4024-a169-90c1c45dcfb4&amp;jid=7d3c50b7-4033-4607-a7e6-5a66a29062c0&amp;pid=3c460e75-1500-4628-862b-d5e5a9a02334&amp;it=4oCg1W3_iapbwK0VP9K01w\\\">https://bewerbungsportal.devk.de/jobs/15252-cloud-platform-engineer-d-m-w/job_application/new?cid=662c9407-f8cb-4024-a169-90c1c45dcfb4&amp;jid=7d3c50b7-4033-4607-a7e6-5a66a29062c0&amp;pid=3c460e75-1500-4628-862b-d5e5a9a02334&amp;it=4oCg1W3_iapbwK0VP9K01w</a></p>\\n<p>DEVK-Stellenbörse:\\n<a href=\\\"https://bewerbungsportal.devk.de/index\\\">https://bewerbungsportal.devk.de/index</a></p>\\n<p>Wir freuen uns darauf, Sie persönlich kennenzulernen. Falls Sie noch Fragen haben, rufen Sie uns gerne an.</p>\\n<p>Ihre Ansprechpartnerin:\\nTanja Willing</p>\\n<p>Tel.: +49 221 757-1154</p>\\n\",\n                \"how_to_apply\": \"<p><a href=\\\"https://bewerbungsportal.devk.de/jobs/15252-cloud-platform-engineer-d-m-w/job_application/new?cid=662c9407-f8cb-4024-a169-90c1c45dcfb4&amp;jid=7d3c50b7-4033-4607-a7e6-5a66a29062c0&amp;pid=3c460e75-1500-4628-862b-d5e5a9a02334&amp;it=4oCg1W3_iapbwK0VP9K01w\\\">https://bewerbungsportal.devk.de/jobs/15252-cloud-platform-engineer-d-m-w/job_application/new?cid=662c9407-f8cb-4024-a169-90c1c45dcfb4&amp;jid=7d3c50b7-4033-4607-a7e6-5a66a29062c0&amp;pid=3c460e75-1500-4628-862b-d5e5a9a02334&amp;it=4oCg1W3_iapbwK0VP9K01w</a></p>\\n\",\n                \"company_logo\": \"https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaEtqIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--24c86a54e3794712ee0bbdc4994243071b5bb978/DEVK.png\"\n            },\n            {\n                \"id\": \"0271fa0b-05c3-4a79-80ff-84e331b45571\",\n                \"type\": \"Full Time\",\n                \"url\": \"https://jobs.github.com/positions/0271fa0b-05c3-4a79-80ff-84e331b45571\",\n                \"created_at\": \"Tue May 18 11:53:18 UTC 2021\",\n                \"company\": \"JobRad GmbH\",\n                \"company_url\": \"https://www.jobrad.org/\",\n                \"location\": \"Freiburg\",\n                \"title\": \"Senior UX Engineer (m/w/d)\",\n                \"description\": \"<p>Wir haben das Rad nicht neu erfunden – aber das Dienstrad! JobRad ist Markt- und Qualitätsführer der boomenden Radleasingbranche. An unserem Hauptsitz in Freiburg und in unserem Außendienst in ganz Deutschland arbeiten wir mit Leidenschaft daran, Menschen aufs (Dienst-)Rad zu bringen. Mit großem Erfolg: Mehr als 30.000 Arbeitgeber bieten inzwischen ihren mehr als vier Millionen Angestellten JobRad an: weil JobRäder Talente anziehen, Mitarbeitende fit halten und die Umwelt schützen. Wir suchen Menschen, die mit ihrem Talent und ihren Ideen unser nachhaltiges und schnell wachsendes Unternehmen weiter voranbringen. Werde Teil unserer Fahrrad-Erfolgsgeschichte! Wir suchen ab sofort eine:n</p>\\n<p><strong>Senior UX Engineer (m/w/d), Freiburg</strong></p>\\n<p>Von Anfang an bist du Teil des Teams – und voll mit dabei. Gemeinsam mit deinen Kollegen:innen wirst du digitale Berge versetzen. Du bist ein zentraler Teil unserer Digitalisierung. Bei uns kannst du sofort wirksam werden. Du hilfst deinem Team immer besser zu werden und dein Beitrag macht einen Unterschied. Jede Verbesserung die ihr als Team erreicht macht die Welt ein Stück besser. Mehr Jobradler – bessere Umwelt und bessere Gesundheit.</p>\\n<p><strong>Das erwartet dich</strong></p>\\n<ul>\\n<li>Du wirst Teil eines starken, begeisterten, agilen, cross-funktionalen Teams, welches sich im Aufbau befindet.</li>\\n<li>Neben der Webseite <a href=\\\"http://www.jobrad.org\\\">www.jobrad.org</a> erwarten dich viele kundenspezifische Herausforderungen.</li>\\n<li>Wir sind überzeugt vom Open Source Mindset und arbeiten mit dem Web-Enterprise-CMS Magnolia.</li>\\n<li>Du entwickelst aus Magnolia heraus Content Management Workflows für tausende Kunden.</li>\\n<li>Wir nutzen weitere Technologien wie JavaScript ES6+, WebComponents, React, CSS, git, npm, Node.js, Java etc.</li>\\n</ul>\\n<p><strong>Das bringst du mit</strong></p>\\n<p>Mit deiner Erfahrung setzt du Impulse und löst regelmäßig Aha-Effekte aus. Zusammen mit deinem Team stehst du dafür ein, alles von Anfang an richtig zu machen. Qualität ist dir wichtig.</p>\\n<ul>\\n<li>Keine Hacks</li>\\n<li>Keine Workarounds</li>\\n<li>Keine technischen Schulden</li>\\n<li>Stattdessen: Clean Code &amp; Clean Design (dry)</li>\\n<li>Content-Management ist kein Fremdwort für dich.</li>\\n<li>Wir freuen uns, solltest du zusätzlich Interesse an strukturierten Daten, mobile first, Barrierefreiheit und Analytics mitbringen.</li>\\n</ul>\\n<p>Du bist ein:e starke:r Spieler:in auf dem digitalen Spielfeld und deine Meinung ist gefragt. Neben deinem hohen technischen Anspruch möchtest du den Sinn hinter den Features verstehen.</p>\\n<p><strong>Wir bieten dir</strong></p>\\n<ul>\\n<li>Die Möglichkeit, unsere Produkte maßgeblich mitzugestalten und am Erfolg eines jungen Unternehmens mit flachen Hierarchien mitzuwirken.</li>\\n<li>Einsatz und Ausprobieren der neuesten Technologien.</li>\\n<li>Eine gute Einarbeitung und ein tolles Arbeitsumfeld in einem stark wachsenden Unternehmen.</li>\\n<li>Dein eigenes JobRad und einen tollen Standort zum Leben, Arbeiten und Radfahren.</li>\\n</ul>\\n<p>Du passt zu uns, wenn du die agilen Werte teilst, dich für Technologien begeistern kannst, dein Wissen mit anderen teilen möchtest und du Lust hast, mit uns „Menschen aufs Rad zu bringen\\\".</p>\\n<p><strong>Wenn dich dieses Stellenprofil begeistert, freuen wir uns auf deine Bewerbung.</strong></p>\\n<ul>\\n<li>Start: \\t                Ab sofort</li>\\n<li>Arbeitszeit: \\t        Vollzeit</li>\\n<li>Ansprechpartner:  Eva Kuhn</li>\\n</ul>\\n\",\n                \"how_to_apply\": \"<p><a href=\\\"https://www.jobrad.org/ueber-uns/karriere.html?yid=418&amp;sid=2c535533abcb73beb8180c860662f972\\\">https://www.jobrad.org/ueber-uns/karriere.html?yid=418&amp;sid=2c535533abcb73beb8180c860662f972</a></p>\\n\",\n                \"company_logo\": \"https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZytqIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f5208c9b9a19cee706f954fcf4676b5ef67f8fae/2.Jobrad-Logo%C2%AE-RGB-color-large-1500px-quadr.jpg\"\n            },\n            {\n                \"id\": \"f4a7c47f-c8ac-49fa-b15b-4ab37bfd2307\",\n                \"type\": \"Full Time\",\n                \"url\": \"https://jobs.github.com/positions/f4a7c47f-c8ac-49fa-b15b-4ab37bfd2307\",\n                \"created_at\": \"Tue May 18 09:52:30 UTC 2021\",\n                \"company\": \"Blindside\",\n                \"company_url\": \"https://www.blindside.pro\",\n                \"location\": \"Berlin\",\n                \"title\": \"Flutter Developer\",\n                \"description\": \"<p>Blindside is a sports tech start up from Berlin-Adlershof. Professional and amateur coaches and clubs boost their practices with our web and mobile app. We are striving to become the global sport platform, on which coaches exchange their experience, get inspired, and enable their athletes to develop in the best way possible.</p>\\n<p>We are currently optimizing our mobile app, reinforcing our infrastructure and in the initial stages of a sports training analytics engine. We ship code often with continuous deployment and do most of our work in Python, Flutter/Dart, and React.</p>\\n<p>As our focus shifts more heavily toward mobile development, Blindside are looking for an experienced mobile developer with professional working experience using Flutter.</p>\\n<p><strong>Tasks</strong></p>\\n<ul>\\n<li>You will be immersed into a highly autonomous environment.</li>\\n<li>You will design new features and build &amp; maintain within our existing codebase in Flutter</li>\\n<li>You will constantly be learning new skills. Researching, conducting trial &amp; error experiments as well as maintaining full ownership of your code, from concept to deployment.</li>\\n<li>In your first month, you will be familiarized with our team and have already resolved some bugs and small requests. Your code has gone live multiple times in the first month.</li>\\n<li>In the following months, your knowledge of our codebase has drastically increased and you are offering your help in fundamental software architecture decisions. You also feel confident enough to suggest improvement to the team's workflow when you see it doesn't work.</li>\\n<li>At the end of your first year, you have successfully contributed to a wide range of projects, even spanning across multiple elements of our system, from backend to mobile. You have established yourself as a self starter and clearly spoken member of our team.</li>\\n</ul>\\n<p><strong>Requirements</strong></p>\\n<ul>\\n<li>Strong technical background (5+ years) in mobile development (Android or iOS), preferably professional experience working in Flutter</li>\\n<li>Ideally you have experience in other areas of software development outside of mobile (backend, frontend, infrastructure, etc.)</li>\\n<li>You can comfortably propose technical solutions to business problems and clearly communicate them to your colleagues.</li>\\n<li>You are transparent, mindful and empathetic towards your teammates.</li>\\n<li>You can easily express your ideas in written and spoken English</li>\\n</ul>\\n<p><strong>Benefits</strong></p>\\n<ul>\\n<li>The opportunity to establish yourself as a core member of the development team</li>\\n<li>An international team with a wide range of backgrounds</li>\\n<li>A salary that matches industry standards</li>\\n<li>A respectful atmosphere with a focus on professionalism</li>\\n<li>A family-friendly work environment</li>\\n<li>State of the art equipment to ensure that you can focus on the right things</li>\\n<li>Daily paid lunch at our local canteen</li>\\n<li>Yearly budget for individual professional development</li>\\n</ul>\\n\",\n                \"how_to_apply\": \"<p><a href=\\\"https://blindside.join.com/jobs/2248922-flutter-developer?pid=357a3b4531918760973f&amp;oid=1b7223ae-85f3-44df-b767-57095fc2735d&amp;utm_source=github_jobs&amp;utm_medium=paid&amp;utm_campaign=single%2Bposting&amp;utm_content=flutter%2Bdeveloper\\\">https://blindside.join.com/jobs/2248922-flutter-developer?pid=357a3b4531918760973f&amp;oid=1b7223ae-85f3-44df-b767-57095fc2735d&amp;utm_source=github_jobs&amp;utm_medium=paid&amp;utm_campaign=single%2Bposting&amp;utm_content=flutter%2Bdeveloper</a></p>\\n\",\n                \"company_logo\": \"https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZzZqIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--23cbad69864ba3e2e6614bda12beda0b08c03c68/blindside.jpg\"\n            },\n            {\n                \"id\": \"cb850cd5-ea88-484f-8ac1-5359894279b1\",\n                \"type\": \"Full Time\",\n                \"url\": \"https://jobs.github.com/positions/cb850cd5-ea88-484f-8ac1-5359894279b1\",\n                \"created_at\": \"Tue May 18 09:06:43 UTC 2021\",\n                \"company\": \"DEVK Versicherungen\",\n                \"company_url\": \"https://bewerbungsportal.devk.de/index\",\n                \"location\": \"Cologne\",\n                \"title\": \"Java-Entwickler / DevOps Engineer (d/m/w) \",\n                \"description\": \"<p>Java-Entwickler / DevOps Engineer (d/m/w)</p>\\n<p>Seit mehr als 130 Jahren legen Versicherte in Deutschland ihre Risiken des Alltags vertrauensvoll in die Hände der DEVK Versicherungen. Heute ist die DEVK bundesweit präsent und betreut die persönlichen Anliegen von über vier Millionen Kunden in allen Versicherungssparten.</p>\\n<p>Gemeinsam mit den Kollegen aus Krankenversicherung und Pensionsfonds arbeiten unsere IT-Spezialisten an innovativen Lösungen. Als Java-Entwickler / DevOps Engineer (d/m/w) sind Sie verantwortlich für die Weiterentwicklung und Betreuung unserer Anwendungen und den Ausbau der Partnerschaft mit den beiden Fachbereichen.</p>\\n<p>Ihre Aufgaben</p>\\n<ul>\\n<li>Aktive Unterstützung in Projekten zur Einführung neuer moderner Versicherungssysteme</li>\\n<li>Eigenverantwortliche Java- / DevOps-Entwicklung im crossfunktionalen Umfeld</li>\\n<li>Beratung der Fachbereiche auf den Gebieten Anwendungsentwicklung un Benutzeroberflächen</li>\\n<li>Pflege von technischen Dokumentationen</li>\\n</ul>\\n<p>Ihr Profil</p>\\n<ul>\\n<li>Erfolgreiches IT-Studium oder entsprechende Ausbildung mit mehrjähriger einschlägiger Berufserfahrung</li>\\n<li>Mehrjährige praktische Erfahrung in der Java-Anwendungsentwicklung</li>\\n<li>Fundierte Kenntnisse in Technologien unseres Stacks: Linux, Java, GitLab, CI / CD Pipeline, HTML, CSS, Spring</li>\\n<li>Methodische Kenntnisse im Bereich der Softwareentwicklung: Clean-Code-Entwicklung, arc42, SA4D, etc.</li>\\n<li>Entscheidungs- und Konfliktfähigkeit sowie hohe Service- und Kundenorientierung</li>\\n<li>Begeisterung Neues zu lernen, auszuprobieren und Gelerntes zu vermitteln</li>\\n</ul>\\n<p>Unsere Benefits</p>\\n<ul>\\n<li>Sichere Arbeitsplätze in einem stetig wachsenden Unternehmen</li>\\n<li>Eine hervorragende arbeitgeberfinanzierte betriebliche Altersversorgung</li>\\n<li>Flexible Arbeitszeitmodelle</li>\\n<li>Möglichkeit für Homeoffice / Mobiles Arbeiten</li>\\n<li>Stark vergünstigtes Job-Ticket</li>\\n</ul>\\n<p>Informieren Sie sich über unsere weiteren Benefits:\\n<a href=\\\"https://www.devk.de/karriere/devkjobwelt/innendienst/mitarbeitervorteile-innendienst.jsp\\\">https://www.devk.de/karriere/devkjobwelt/innendienst/mitarbeitervorteile-innendienst.jsp</a></p>\\n<p>Jetzt bewerben:\\n<a href=\\\"https://bewerbungsportal.devk.de/jobs/16031-java-entwickler-devops-engineer-d-m-w/job_application/new?cid=662c9407-f8cb-4024-a169-90c1c45dcfb4&amp;jid=eaebb04d-dcd9-42f8-83b9-bb9bbf560e3d&amp;pid=40013152-f611-40b8-bf58-74bb2c09ead1&amp;it=xG-LYwe9Ws71E_b-qhlkIA\\\">https://bewerbungsportal.devk.de/jobs/16031-java-entwickler-devops-engineer-d-m-w/job_application/new?cid=662c9407-f8cb-4024-a169-90c1c45dcfb4&amp;jid=eaebb04d-dcd9-42f8-83b9-bb9bbf560e3d&amp;pid=40013152-f611-40b8-bf58-74bb2c09ead1&amp;it=xG-LYwe9Ws71E_b-qhlkIA</a></p>\\n<p>DEVK-Stellenbörse:\\n<a href=\\\"https://bewerbungsportal.devk.de/index\\\">https://bewerbungsportal.devk.de/index</a></p>\\n<p>Wir freuen uns darauf, Sie persönlich kennenzulernen. Falls Sie noch Fragen haben, rufen Sie uns gerne an.</p>\\n<p>Ihre Ansprechpartnerin:\\nTanja Willing</p>\\n<p>Tel.: +49 221 757-1154</p>\\n\",\n                \"how_to_apply\": \"<p><a href=\\\"https://bewerbungsportal.devk.de/jobs/16031-java-entwickler-devops-engineer-d-m-w/job_application/new?cid=662c9407-f8cb-4024-a169-90c1c45dcfb4&amp;jid=eaebb04d-dcd9-42f8-83b9-bb9bbf560e3d&amp;pid=40013152-f611-40b8-bf58-74bb2c09ead1&amp;it=toKasXQTMnB1HeLBLr7YlA\\\">https://bewerbungsportal.devk.de/jobs/16031-java-entwickler-devops-engineer-d-m-w/job_application/new?cid=662c9407-f8cb-4024-a169-90c1c45dcfb4&amp;jid=eaebb04d-dcd9-42f8-83b9-bb9bbf560e3d&amp;pid=40013152-f611-40b8-bf58-74bb2c09ead1&amp;it=toKasXQTMnB1HeLBLr7YlA</a></p>\\n\",\n                \"company_logo\": \"https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBZ2FqIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--20480e79ed6b7c776d68070e08a0b127c541c98d/DEVK.png\"\n            }\n        ],\n        \"page\": 1,\n        \"size\": 10\n    }\n}"
+						},
+						{
+							"name": "Succces with filter",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/jobs?location=Schwerin",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"jobs"
+									],
+									"query": [
+										{
+											"key": "description",
+											"value": "python",
+											"disabled": true
+										},
+										{
+											"key": "location",
+											"value": "Schwerin"
+										},
+										{
+											"key": "full_time",
+											"value": "false",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "2",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "14815"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"39df-00bKD9oH4JZMw8MNlGtmvf0gBAQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 21:57:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"data\": [\n            {\n                \"id\": \"7638eee4-4e75-4c06-a920-ea7619a311b5\",\n                \"type\": \"Full Time\",\n                \"url\": \"https://jobs.github.com/positions/7638eee4-4e75-4c06-a920-ea7619a311b5\",\n                \"created_at\": \"Tue May 18 17:12:52 UTC 2021\",\n                \"company\": \"MANDARIN MEDIEN Gesellschaft für digitale Lösungen mbH\",\n                \"company_url\": \"https://www.mandarin-medien.de/\",\n                \"location\": \"Schwerin\",\n                \"title\": \"Systemadministrator:in\",\n                \"description\": \"<p>2002 sind wir als Internetagentur gestartet. Heute bezeichnen wir uns als Digitalagentur. Das Spielfeld ist heute breiter und greift tiefer in bestehende Geschäftsbereiche ein. In unseren 3 Units MARKETING, DIGITAL &amp; TALENT arbeiten über 80 Macher, Nerds und Kreative nach einem Prinzip: Messbar mehr Erfolg. Das heißt konkret: Klare Ziele. Permanente Optimierung. Transparentes Reporting.</p>\\n<p><strong>Wer wir sind</strong></p>\\n<p>Wir sind Zuhörer, Strategen, Kreative, Experten, Kollegen, Freunde, Spaßmacher, keine Großeredenschwinger, Stille, Laute, Sprachgewandte, Texter, Erfolgshungrige, Macher.</p>\\n<p><strong>WIR HELFEN MENSCHEN UND MARKEN ÜBER SICH HINAUSZUWACHSEN.\\nWIR SIND MANDARIN MEDIEN!</strong></p>\\n<p><strong>Das wären Deine Aufgaben</strong></p>\\n<p>Wir bieten Dir einen freien Platz in unserem IT Team als Systemadministrator:in in unserer Digitalagentur in Schwerin. Mit deinem Team wirst du für unsere Kunden den digitalen Ausbau vorantreiben und die Chance bekommen unsere digitale Unit noch weiter auszubauen und größer werden zu lassen.\\nChristian, Christoph, Fabrice, Gordon, Gérard, Marcel, Christoph, Moritz, Sebastian &amp; Steffen freuen sich, wenn DU ihr Team komplett machst.</p>\\n<p><strong>Das wären Deine Aufgaben</strong></p>\\n<ul>\\n<li>Erster Ansprechpartner für deine Kunden, via Telefon, E-Mail, Remote oder auch direkt vor Ort</li>\\n<li>Umgang mit verschiedenen Themen und Umgebungen\\nz.B: Client-, Server-, Netzwerk- und im Cloudbereich</li>\\n<li>Fehleranalyse und -beseitigung</li>\\n<li>Installation, Administration und Wartung von Kundeninfrastruktur</li>\\n<li>First- und Second-Level Support</li>\\n<li>Projektbezogene Planung, Vorbereitung und Durchführung</li>\\n</ul>\\n<p><strong>Das bringst Du mit</strong></p>\\n<ul>\\n<li>Eine abgeschlossene Ausbildung als Fachinformatiker für Systemintegration</li>\\n<li>Führerschein Klasse B</li>\\n<li>Kunden- sowie Lösungsorientiertes handeln</li>\\n<li>Verantwortungsbewusstsein für deine eigenständige Zeiteinteilung</li>\\n<li>Bereitschaft jeden Tag dazu zu lernen und mit deinen Aufgaben zu wachsen</li>\\n<li>Spaß an der Arbeit im Team und mit dem Team neue Ideen zu entwickeln</li>\\n<li>Zertifizierungen im Bereich Microsoft, VMWare und Cisco wünschenswert</li>\\n</ul>\\n<p>Klingt ganz schön viel? Nobody is perfect! Wir lernen alle jeden Tag voneinander und nehmen uns jede Woche Zeit für Weiterbildung. Die ein oder andere Fähigkeit kannst Du also auch nach Deinem Start bei uns erlernen oder vertiefen.</p>\\n<p><strong>Das bieten wir Dir</strong></p>\\n<ul>\\n<li>Einen spannenden und anspruchsvollen Agentur-Job in MV</li>\\n<li>Eine große Bandbreite an Projekten - Handwerk bis Konzern</li>\\n<li>Ein hervorragendes Arbeitsklima und kurze Entscheidungswege</li>\\n<li>Zeit für Deine Weiterbildung,  je Woche, plus Budget</li>\\n<li>Moderne Arbeitsmittel und neueste Programme</li>\\n<li>Unterstützung Deiner Gesundheit</li>\\n<li>Möglichkeit eines Fahrtkostenzuschusses</li>\\n<li>Flexibles Arbeiten - von Zuhause oder einfach mal am Strand</li>\\n<li>Kreative Denkpausen mit dem Boot auf dem Schweriner See</li>\\n<li>Teamevents, wie z.B. Grillen, MANDARIN-Kino, Besuch des Weihnachtsmarktes uvm.</li>\\n<li>Ein Büro mitten in der City sowie leckeres Obst, Kaffee, Tee, Wasser und Mate</li>\\n</ul>\\n<p><strong>Kontakt</strong></p>\\n<p>​​​​​Passt alles für Dich?</p>\\n<p>Dann sende Deine Bewerbung mit Deinen Vorstellungen zu Gehalt und Urlaub an Corinna Lepsien, <a href=\\\"mailto:jobs@mandarin-medien.de\\\">jobs@mandarin-medien.de</a>. Falls Du gerade unterwegs bist, kannst Du uns auch einfach einen Link von Deinem Xing- oder LinkedIn Profil schicken.</p>\\n<p><img src=\\\"https://camo.githubusercontent.com/26c2737b75fe2e3161d0a357a200081f9e8d0243/68747470733a2f2f742e676f686972696e672e636f6d2f682f31306564346231663739316361656138313233643961343663393034333134353938646566643238663733363838366634363661363332383333376361376130\\\"></p>\\n\",\n                \"how_to_apply\": \"<p><a href=\\\"https://t.gohiring.com/h/83f7df34249addb0bebc8dc680310d1ded43220a748ee285e27989a457dd10ea\\\">Application form</a></p>\\n\",\n                \"company_logo\": \"https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaCtqIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--8d0339b9e43b0dca160b9db73b230b6067e39b05/MANDARIN%20MEDIEN%20Gesellschaft%20fu%CC%88r%20digitale%20Lo%CC%88sungen%20mbH.jpeg\"\n            },\n            {\n                \"id\": \"1f004d5a-ef14-4533-8c0b-5f354978ddae\",\n                \"type\": \"Full Time\",\n                \"url\": \"https://jobs.github.com/positions/1f004d5a-ef14-4533-8c0b-5f354978ddae\",\n                \"created_at\": \"Tue May 18 17:09:49 UTC 2021\",\n                \"company\": \"MANDARIN MEDIEN Gesellschaft für digitale Lösungen mbH\",\n                \"company_url\": \"https://www.mandarin-medien.de/\",\n                \"location\": \"Schwerin\",\n                \"title\": \"IT-System- und Netzwerkadministrator:in\",\n                \"description\": \"<p>2002 sind wir als Internetagentur gestartet. Heute bezeichnen wir uns als Digitalagentur. Das Spielfeld ist heute breiter und greift tiefer in bestehende Geschäftsbereiche ein. In unseren 3 Units MARKETING, DIGITAL &amp; TALENT arbeiten über 80 Macher, Nerds und Kreative nach einem Prinzip: Messbar mehr Erfolg. Das heißt konkret: Klare Ziele. Permanente Optimierung. Transparentes Reporting.</p>\\n<p><strong>Wer wir sind</strong></p>\\n<p>Wir sind Zuhörer, Strategen, Kreative, Experten, Kollegen, Freunde, Spaßmacher, keine Großeredenschwinger, Stille, Laute, Sprachgewandte, Texter, Erfolgshungrige, Macher.</p>\\n<p><strong>WIR HELFEN MENSCHEN UND MARKEN ÜBER SICH HINAUSZUWACHSEN.\\nWIR SIND MANDARIN MEDIEN!</strong></p>\\n<p><strong>Das wären Deine Aufgaben</strong></p>\\n<p>Wir bieten Dir einen freien Platz in unserem IT-Team als Systemadministrator:in, in Schwerin. Mit deinem Team wirst du für unsere Kunden moderne IT Landschaften erschaffen, eigenverantwortlich aber immer mit Teamsupport arbeiten, dich persönlich und fachlich immer weiterentwickeln.</p>\\n<p>Unsere IT-Crew entwickelt und supportet zum Beispiel Netzwerke, Cloud Lösungen, TK Anlagen, Live Streamings von Konferenzen, spezifische Branchensoftware und individuelle Digitalisierungsprojekte für Kunden aus den Branchen: Energieversorgung, Sozial- und Wohlfahrtsverbände, Pflegeeinrichtungen sowie Unternehmen aus den Bereichen Lebensmittelindustrie und Medizintechnik.</p>\\n<p>Christian, Steffen, Christoph, Fabrice, Gérard, Marcel, Christoph, Moritz, Sebastian &amp;  Gordon freuen sich, wenn DU ihr Team komplett machst.</p>\\n<p><strong>Das wären Deine Aufgaben</strong></p>\\n<ul>\\n<li>Erster Ansprechpartner für deine Kunden, via Telefon, E-Mail, Remote oder auch direkt vor Ort</li>\\n<li>Umgang mit verschiedenen Themen und Umgebungen\\nz.B: Client-, Server-, Netzwerk- und im Cloudbereich</li>\\n<li>Fehleranalyse und -beseitigung</li>\\n<li>Installation, Administration und Wartung von Kundeninfrastruktur</li>\\n<li>First- und Second-Level Support</li>\\n<li>Projektbezogene Planung, Vorbereitung und Durchführung</li>\\n</ul>\\n<p><strong>Das bringst Du mit</strong></p>\\n<ul>\\n<li>Eine abgeschlossene Ausbildung als Fachinformatiker für Systemintegration</li>\\n<li>Führerschein Klasse B</li>\\n<li>Kunden- sowie Lösungsorientiertes handeln</li>\\n<li>Verantwortungsbewusstsein für deine eigenständige Zeiteinteilung</li>\\n<li>Bereitschaft jeden Tag dazu zu lernen und mit deinen Aufgaben zu wachsen</li>\\n<li>Spaß an der Arbeit im Team und mit dem Team neue Ideen zu entwickeln</li>\\n<li>Zertifizierungen im Bereich Microsoft, VMWare und Cisco wünschenswert</li>\\n</ul>\\n<p>Klingt ganz schön viel? Nobody is perfect! Wir lernen alle jeden Tag voneinander und nehmen uns jede Woche Zeit für Weiterbildung. Die ein oder andere Fähigkeit kannst Du also auch nach Deinem Start bei uns erlernen oder vertiefen.</p>\\n<p><strong>Das bieten wir Dir</strong></p>\\n<ul>\\n<li>Einen spannenden und anspruchsvollen Agentur-Job in MV</li>\\n<li>Eine große Bandbreite an Projekten - Handwerk bis Konzern</li>\\n<li>Ein hervorragendes Arbeitsklima und kurze Entscheidungswege</li>\\n<li>Zeit für Deine Weiterbildung,  je Woche, plus Budget</li>\\n<li>Moderne Arbeitsmittel und neueste Programme</li>\\n<li>Unterstützung Deiner Gesundheit</li>\\n<li>Möglichkeit eines Fahrtkostenzuschusses</li>\\n<li>Flexibles Arbeiten - von Zuhause oder einfach mal am Strand</li>\\n<li>Kreative Denkpausen mit dem Boot auf dem Schweriner See</li>\\n<li>Teamevents, wie z.B. Grillen, MANDARIN-Kino, Besuch des Weihnachtsmarktes uvm.</li>\\n<li>Ein Büro mitten in der City sowie leckeres Obst, Kaffee, Tee, Wasser und Mate</li>\\n</ul>\\n<p><strong>Kontakt</strong></p>\\n<p>Passt alles für Dich?</p>\\n<p>Dann sende Deine Bewerbung mit Deinen Vorstellungen zu Gehalt und Urlaub an Corinna Lepsien, <a href=\\\"mailto:jobs@mandarin-medien.de\\\">jobs@mandarin-medien.de</a>. Falls Du gerade unterwegs bist, kannst Du uns auch einfach einen Link von Deinem Xing- oder LinkedIn Profil schicken.</p>\\n<p><img src=\\\"https://camo.githubusercontent.com/7c8050f30305b6c7e0a255c3a35090adff7c8b0c/68747470733a2f2f742e676f686972696e672e636f6d2f682f62303261636662623138313036343332356430333531393536326135323633336262376136336436326166313763306638313463323663623362646166303565\\\"></p>\\n\",\n                \"how_to_apply\": \"<p><a href=\\\"https://t.gohiring.com/h/5f4466dcc594ef01a23adea56b03b1804a0ed6fae16d790b9758d8192250fb0c\\\">Application form</a></p>\\n\",\n                \"company_logo\": \"https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaDJqIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--8ad2112c9ebe7a1e14f3dee7b448a1c1a37abe03/MANDARIN%20MEDIEN%20Gesellschaft%20fu%CC%88r%20digitale%20Lo%CC%88sungen%20mbH.jpeg\"\n            },\n            {\n                \"id\": \"8913f893-e6e3-4d50-aaf4-94f8eb479ead\",\n                \"type\": \"Full Time\",\n                \"url\": \"https://jobs.github.com/positions/8913f893-e6e3-4d50-aaf4-94f8eb479ead\",\n                \"created_at\": \"Tue May 18 17:06:20 UTC 2021\",\n                \"company\": \"MANDARIN MEDIEN Gesellschaft für digitale Lösungen mbH\",\n                \"company_url\": \"https://www.mandarin-medien.de/\",\n                \"location\": \"Schwerin\",\n                \"title\": \"Frontend Entwickler:in\",\n                \"description\": \"<p>2002 sind wir als Internetagentur gestartet. Heute bezeichnen wir uns als Digitalagentur. Das Spielfeld ist heute breiter und greift tiefer in bestehende Geschäftsbereiche ein. In unseren 3 Units MARKETING, DIGITAL &amp; TALENT arbeiten über 80 Macher, Nerds und Kreative nach einem Prinzip: Messbar mehr Erfolg. Das heißt konkret: Klare Ziele. Permanente Optimierung. Transparentes Reporting.</p>\\n<p><strong>Wer wir sind</strong></p>\\n<p>2002 sind wir als Agentur gestartet. Heute arbeiten über 80 Macher, Nerds und Kreative bei uns. Wir sind Strategen, Experten, Zuhörer, Kollegen, Freunde, Aufdenpunktbringer, Sprachgewandte, Texter und Erfolgshungrige.\\nGemeinsam entwickeln wir sehr wirkungsvolle Lösungen in den Bereichen Digitales Marketing, Employer Branding und Digitalisierung für Marken, wie Cinestar, Vodafone, Garmin, Wemag und viele mehr. Wir entwickeln Online-Marketing-Strategien, bauen innovative Websites und haben auch sonst die gesamte Vielfalt des Agenturlebens zu bieten.</p>\\n<p><strong>Das wären Deine Aufgaben</strong></p>\\n<p><strong>Du willst eine Mandarine werden?</strong>\\nDu liebst gut bedienbare, gut aussehende und gut funktionierende Websites?\\nDu liebst es noch mehr, diese selbst zu entwickeln?\\nDu möchtest mit einem erfahrenen Team aus Anwendungsentwicklern, Konzeptern, Designern, Marketingexperten uvm. arbeiten? Eine Crew hinter dir haben, dir dir das Frontend überlässt?\\nDann bist du die perfekte Mandarine im Bereich FRONTEND DEVELOPMENT!</p>\\n<p><strong>Das bringst Du mit</strong></p>\\n<p><strong>DAS SOLLTEST DU MITBRINGEN:</strong></p>\\n<ul>\\n<li>Fundierte Kenntnisse in HTML,CSS, Javascript</li>\\n<li>Umgang mit entsprechenden Techniken und Frameworks (React, LESS/SASS, Tailwind, Bootstrap o.ä.)</li>\\n<li>Eigenständiges Arbeiten, Teamgeist, Kommunikationsfähigkeit</li>\\n<li>Ein sehr hohes Qualitätsbewusstsein</li>\\n</ul>\\n<p><strong>Von Vorteil sind:</strong></p>\\n<ul>\\n<li>Grundlegende Programmierkenntnisse z.B. in PHP</li>\\n<li>Verständnis von OOP</li>\\n<li>GIT Kenntnisse</li>\\n<li>Verständnis von Datenbanken, z.B. MySQL</li>\\n<li>Verständnis von API</li>\\n<li>Alltagssicheres Englisch</li>\\n</ul>\\n<p><strong>Nahezu großartig wären:</strong></p>\\n<ul>\\n<li>Drupal 7&amp;8 Kenntnisse</li>\\n<li>WordPress Erfahrung</li>\\n<li>Verständnis von Template Engines wie Twig oder Blade</li>\\n</ul>\\n<p>Klingt ganz schön viel? Nobody is perfect! Wir lernen jeden Tag voneinander und nehmen uns jede Woche Zeit für Weiterbildung. Die ein oder andere Fähigkeit kannst Du also auch nach Deinem Start bei uns erlernen oder vertiefen.</p>\\n<p><strong>Das bieten wir Dir</strong></p>\\n<p><strong>DAS KÖNNEN WIR DIR BIETEN:</strong></p>\\n<ul>\\n<li>Einen spannenden und anspruchsvollen Agentur-Job in MV</li>\\n<li>Eine große Bandbreite an Projekten - Handwerk bis Konzern</li>\\n<li>Ein hervorragendes Arbeitsklima und kurze Entscheidungswege</li>\\n<li>4 Stunden Zeit für deine Weiterbildung je Woche plus Budget</li>\\n<li>Neueste Arbeitsmittel und Programme</li>\\n<li>Unterstützung deiner Gesundheit</li>\\n<li>Fahrtkostenzuschuss</li>\\n<li>Flexible Arbeitsorte</li>\\n<li>Kreative Denkpausen mit dem Boot auf dem Schweriner See</li>\\n<li>Teamevents, wie z.B. Grillen, MANDARIN-Kino, Besuch des Weihnachtsmarktes und noch ein paar mehr</li>\\n<li>Ein Büro mit Blick auf den Schweriner See sowie lecker Obst, Kaffee, Tee, Wasser und Mate</li>\\n</ul>\\n<p><strong>Kontakt</strong></p>\\n<p>Passt alles für Dich? Dann schick deine Bewerbung mit deinen Vorstellungen zu Gehalt und Urlaub an Corinna Lepsien, <a href=\\\"mailto:jobs@mandarin-medien.de\\\">jobs@mandarin-medien.de</a>. Oder falls du gerade unterwegs bist einfach einen Link zu deinem Xing- oder LinkedIn Profil.</p>\\n<p><img src=\\\"https://camo.githubusercontent.com/da6ee29a15ea655c323d5f0c1b730031e993f7a6/68747470733a2f2f742e676f686972696e672e636f6d2f682f37306233363363363563343163653431666337333065333861633565626333313838333133653163613361323831303233333738376431333236313139303537\\\"></p>\\n\",\n                \"how_to_apply\": \"<p><a href=\\\"https://t.gohiring.com/h/eaf3f0c97d54fa8a2cc87ea55ba8e9a4ab96c37d6c2f915a3e302cb450ce3602\\\">Application form</a></p>\\n\",\n                \"company_logo\": \"https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaHVqIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0814678c4cc00f78262bd84da10eed4e7d39f77c/MANDARIN%20MEDIEN%20Gesellschaft%20fu%CC%88r%20digitale%20Lo%CC%88sungen%20mbH.jpeg\"\n            }\n        ],\n        \"page\": 1,\n        \"size\": 3\n    }\n}"
+						},
+						{
+							"name": "No Available data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/jobs?page=3",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"jobs"
+									],
+									"query": [
+										{
+											"key": "description",
+											"value": "python",
+											"disabled": true
+										},
+										{
+											"key": "location",
+											"value": "Schwerin",
+											"disabled": true
+										},
+										{
+											"key": "full_time",
+											"value": "false",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2e-2Oo3JD8NUDQZZmuiHOFZLSKCsOk\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 21:55:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"No data available\"\n}"
+						},
+						{
+							"name": "JOBS Pagination",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/jobs",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"jobs"
+									],
+									"query": [
+										{
+											"key": "description",
+											"value": "python",
+											"disabled": true
+										},
+										{
+											"key": "location",
+											"value": "Schwerin",
+											"disabled": true
+										},
+										{
+											"key": "full_time",
+											"value": "false",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "2",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "RTOKEN=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; Secure; SameSite=None"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-AQps8voplm/ABatefmH34cCownU\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 21:58:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Token Invalid\"\n}"
+						}
+					]
+				},
+				{
+					"name": "JOB DETAIL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/v1/jobs/0cbbfe2b-5dcf-45f9-94bf-b74882b593ff",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"v1",
+								"jobs",
+								"0cbbfe2b-5dcf-45f9-94bf-b74882b593ff"
+							],
+							"query": [
+								{
+									"key": "description",
+									"value": "python",
+									"disabled": true
+								},
+								{
+									"key": "location",
+									"value": "berlin",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/v1/jobs/0cbbfe2b-5dcf-45f9-94bf-b74882b593ff",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"v1",
+										"jobs",
+										"0cbbfe2b-5dcf-45f9-94bf-b74882b593ff"
+									],
+									"query": [
+										{
+											"key": "description",
+											"value": "python",
+											"disabled": true
+										},
+										{
+											"key": "location",
+											"value": "berlin",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "3088"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c10-DJbJiGEAYT7GEFnrkEJ2lUKkUEA\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 21:57:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"Success\",\n    \"data\": {\n        \"id\": \"0cbbfe2b-5dcf-45f9-94bf-b74882b593ff\",\n        \"type\": \"Full Time\",\n        \"url\": \"https://jobs.github.com/positions/0cbbfe2b-5dcf-45f9-94bf-b74882b593ff\",\n        \"created_at\": \"Fri May 14 08:12:18 UTC 2021\",\n        \"company\": \"Bertrandt Technikum GmbH Ehningen\",\n        \"company_url\": \"http:\",\n        \"location\": \"Ehningen\",\n        \"title\": \"Entwicklungsingenieur (m/w/d) AUTOSAR\",\n        \"description\": \"<p>Entwicklungsingenieur (m/w/d) AUTOSAR\\nArbeitsort: Ehningen</p>\\n<p>Was Sie erwartet:\\nIn dieser Position haben Sie die Möglichkeit Ihren Beitrag zur Entwicklung der Fahrzeuge der Zukunft zu leisten\\n- Sie sind verantwortlich für die Integration von AUTOSAR Standard Software zur Durchführung von Validierungsmaßnahmen</p>\\n<ul>\\n<li>Sie analysieren, dokumentieren die Software-Fehlerbilder und erstellen die Testfälle anhand von Testspezifikationen</li>\\n<li>Eigenverantwortlich führen Sie die Software White- und Black-Box Tests im Umfeld von AUTOSAR Integrationen durch und wirken bei technischen Reviews mit</li>\\n<li>Außerdem sind Sie für die Erweiterung und Pflege von Entwicklungsumgebungen sowie die Validierung von AUTOSAR ECU Extrakten und Stacks zuständig</li>\\n<li>Zu Ihren Aufgaben gehören ebenfalls die Evaluierung neuer AUTOSAR Features, die Inbetriebnahme und Debuggen von Prototyp-Steuergeräten sowie die Durchführung von Gateway Routing-Tests an Seriensteuergeräten</li>\\n</ul>\\n<p>Was Sie mitbringen:</p>\\n<ul>\\n<li>Ein Abgeschlossenes technisches Studium (bspw. Elektrotechnik oder technische Informatik)</li>\\n<li>Praktische Erfahrungen in der Embedded Softwareentwicklung sowie erste Kenntnisse im Bereich AUTOSAR</li>\\n<li>Gute Programmierkenntnisse in C, C++, CAPL sowie Kenntnisse und Erfahrung in der Anwendung der Vector Toolkette (CANoe, etc.)</li>\\n<li>Erste Erfahrungen mit dem AUTOSAR Konfigurationstool DaVinci wären vorteilhaft</li>\\n<li>Außerdem bringen Sie Interesse an der Elektrotechnik mit und zeigen gerne Eigeninitiative</li>\\n<li>Sichere Sprachkenntnisse in Deutsch und Englisch bringen Sie ebenfalls mit</li>\\n</ul>\\n<p>Werden Sie Teil unserer Software Community, in der Sie eigene Ideen einbringen und verwirklichen können!\\nNeben einer abwechslungsreichen Projektlandschaft bieten wir Ihnen ebenso ein hohes Maß an Eigenverantwortung und die tatkräftige Unterstützung qualifizierter Teams.\\nWenn Sie Lust haben, die Zukunft des Automobil mitzugestalten, dann sollten wir uns kennenlernen.</p>\\n<p>Was wir können:</p>\\n<ul>\\n<li>Verantwortungsvolle Aufgaben</li>\\n<li>Intensive Einarbeitung</li>\\n<li>Patenmodell</li>\\n<li>Flexible Arbeitszeiten</li>\\n<li>Eigenverantwortliches Arbeiten</li>\\n<li>Konzernweites \\\"Netzwerken\\\"</li>\\n<li>Trainingsangebote</li>\\n<li>Rabatte</li>\\n<li>Mobiles Arbeiten</li>\\n<li>Flache Hierarchien</li>\\n</ul>\\n<p>Kontakt:\\nSwetlana Befort\\nTel.: +49 7034 656-5579</p>\\n<p>Stellenanzeige teilen:</p>\\n\",\n        \"how_to_apply\": \"<p><a href=\\\"https://bertrandtgroup.jobbase.io/apply/krjxavmlljhlwvli7c0r4burof6gt1j\\\">https://bertrandtgroup.jobbase.io/apply/krjxavmlljhlwvli7c0r4burof6gt1j</a></p>\\n\",\n        \"company_logo\": null\n    }\n}"
+						},
+						{
+							"name": "Err UnAuthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/v1/jobs/0cbbfe2b-5dcf-45f9-94bf-b74882b593ff",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"v1",
+										"jobs",
+										"0cbbfe2b-5dcf-45f9-94bf-b74882b593ff"
+									],
+									"query": [
+										{
+											"key": "description",
+											"value": "python",
+											"disabled": true
+										},
+										{
+											"key": "location",
+											"value": "berlin",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, x-access-token, Authorization, DID"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET,PUT, OPTIONS, DELETE, PATCH"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "RTOKEN=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; Secure; SameSite=None"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-AQps8voplm/ABatefmH34cCownU\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 13 Feb 2023 21:56:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"Token Invalid\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "HEALTH CHECK",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3002",
+					"host": [
+						"localhost"
+					],
+					"port": "3002"
+				},
+				"description": "To ensure this service online, the client can request to this API first than continue main API"
+			},
+			"response": [
+				{
+					"name": "HEALTH CHECK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3002",
+							"host": [
+								"localhost"
+							],
+							"port": "3002"
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "65"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"41-eqRIZqhvxo7fYmbSvN+8D7dVvz4\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 13 Feb 2023 19:40:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"uptime\": 119.348257728,\n    \"message\": \"OK\",\n    \"timestamp\": 1676317218443\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

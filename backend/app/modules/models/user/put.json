@@ -1,0 +1,55 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "required": ["firstName", "gender", "userName", "emailAddress"],
+    "properties": {
+        "firstName": {
+            "type": "string",
+            "minLength": 2,
+            "errorMessage": {
+                "minLength": "First Name should be greater than 2",
+                "type": "Firstname must be string"
+            }
+        },
+        "lastName": {
+            "type": "string",
+            "errorMessage": {
+                "type": "Lastname must be string"
+            }
+        },
+        "gender": {
+            "type": "string",
+            "enum": ["Man", "Woman"],
+            "errorMessage": {
+                "enum": "Please select one from the options"
+            }
+        },
+        "userName": {
+            "type": "string",
+            "minLength": 4,
+            "errorMessage": {
+                "minLength": "Username should be greater than 4",
+                "type": "Username must be string"
+            }
+        },
+        "emailAddress": {
+            "type": "string",
+            "format": "email",
+            "minLength": 4,
+            "errorMessage": {
+                "format": "The format email address doesn't look like an email",
+                "minLength": "Email address should be greater than 4"
+            }
+        }
+    },
+    "additionalProperties": false,
+    "errorMessage": {
+        "type": "should be an object",
+        "required": {
+            "firstName": "FirstName is required!",
+            "gender": "Gender is required!",
+            "userName": "Username is required!",
+            "emailAddress": "Email address is required!"
+        }
+    }
+}
